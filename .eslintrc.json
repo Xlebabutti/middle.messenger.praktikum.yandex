@@ -19,6 +19,15 @@
                 "endOfLine": "auto"
             }
         ],
-        "@typescript-eslint/ban-ts-ignore": "off"
+        "@typescript-eslint/ban-ts-comment": [
+            "error",
+            {
+                "ts-check": "allow",
+                "ts-expect-error": "allow-with-description",
+                "ts-ignore": "allow",
+                "ts-nocheck": "allow",
+                "minimumDescriptionLength": 3
+            }
+        ]
     }
 }
