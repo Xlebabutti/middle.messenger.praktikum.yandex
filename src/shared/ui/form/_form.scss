@@ -1,6 +1,7 @@
 $primary-color: #1e1e1e;
 $secondary-color: #f2f2f2;
 $accent-color: #4caf50;
+$error-color: #ff2f2f;
 
 .form {
     &__header {
@@ -35,7 +36,7 @@ $accent-color: #4caf50;
 
     &__registration {
         input[type='password'] {
-            color: red;
+            color: $error-color;
         }
     }
 
