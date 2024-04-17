@@ -1,12 +1,16 @@
+$color-primary: #3369f3;
+$color-secondary: #fbfbfb;
+$color-border: #eaeaea;
+
 .sidebar {
     &__body {
         width: 8em;
-        background-color: #fbfbfb;
+        background-color: $color-secondary;
         height: 100%;
         position: absolute;
         left: 0;
         top: 0;
-        border-right: 1px solid #eaeaea;
+        border-right: 1px solid $color-border;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -14,7 +18,7 @@
         &-circle {
             height: 50px;
             width: 50px;
-            background-color: #3369f3;
+            background-color: $color-primary;
             border-radius: 50%;
             display: flex;
             align-items: center;

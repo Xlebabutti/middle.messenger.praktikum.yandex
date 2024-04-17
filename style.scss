@@ -1,3 +1,10 @@
+$color-primary: #3369f3;
+$color-primary-hover: #3369f3a9;
+$color-background: #1a1a1a;
+$color-shadow: rgba(0, 0, 0, 0.14);
+$color-shadow-strong: rgba(0, 0, 0, 0.24);
+$color-highlight: #f7df1e;
+
 :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
@@ -10,12 +17,12 @@
 
 a {
     font-weight: 500;
-    color: #3369f3;
+    color: $color-primary;
     text-decoration: inherit;
 }
 
 a:hover {
-    color: #3369f3a9;
+    color: $color-primary-hover;
 }
 
 input {
@@ -51,19 +58,11 @@ h1 {
     transition: filter 300ms;
 }
 
-.logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.vanilla:hover {
-    filter: drop-shadow(0 0 2em #f7df1eaa);
-}
-
 .card {
     width: 340px;
     display: inline-block;
     border-radius: 12px;
-    box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
+    box-shadow: 0 0 6px 0 $color-shadow;
 }
 
 button {
@@ -73,7 +72,7 @@ button {
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #1a1a1a;
+    background-color: $color-background;
     cursor: pointer;
     transition: border-color 0.25s;
     width: 280px;

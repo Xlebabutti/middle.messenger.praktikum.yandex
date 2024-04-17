@@ -1,3 +1,9 @@
+$color-primary: #3369f3;
+$color-secondary: #1a1a1a;
+$color-background: #fefefe;
+$color-border: #8d8d8d;
+$color-error: #ff2f2f;
+
 .modal {
     // display: none;
     position: fixed;
@@ -13,17 +19,17 @@
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        background-color: #fefefe;
+        background-color: $color-background;
         margin: 15% auto;
         padding: 20px;
-        border: 1px solid #888;
+        border: 1px solid $color-border;
         width: 80%;
         height: 257px;
         max-width: 340px;
         border-radius: 12px;
 
         & > div.input {
-            color: #8d8d8d;
+            color: $color-border;
 
             input {
                 border: 0;
@@ -32,7 +38,7 @@
 
             label {
                 font-size: 1em;
-                color: #3369f3;
+                color: $color-primary;
                 display: inline;
                 position: relative;
                 cursor: pointer;
@@ -44,5 +50,5 @@
 }
 
 .error {
-    color: #ff2f2f !important;
+    color: $color-error;
 }

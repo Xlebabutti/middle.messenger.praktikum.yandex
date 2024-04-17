@@ -1,3 +1,9 @@
+$color-primary: #3369f3;
+$color-secondary: #efefef;
+$color-border: #eaeaea;
+$color-text: #999;
+$color-danger: red;
+
 .profile {
     display: flex;
     flex-direction: column;
@@ -9,7 +15,7 @@
             width: 8.125em;
             height: 8.125em;
             border-radius: 50%;
-            background-color: #efefef;
+            background-color: $color-secondary;
             object-fit: cover;
             display: flex;
             align-items: center;
@@ -19,6 +25,7 @@
         &-title {
             font-size: 1.5em;
             margin-bottom: 0;
+            color: $color-primary;
         }
     }
 
@@ -33,7 +40,7 @@
                 justify-content: space-between;
                 padding: 0.8em;
                 font-weight: 500;
-                border-bottom: 1px solid #eaeaea;
+                border-bottom: 1px solid $color-border;
             }
 
             &-list:last-child {
@@ -41,7 +48,7 @@
             }
 
             &-content {
-                color: #999;
+                color: $color-text;
                 border: 0;
                 font-size: 1em;
                 text-align: right;
@@ -61,14 +68,14 @@
 
         &-item {
             padding: 0.8em;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 1px solid $color-border;
         }
 
         &-item:last-child {
             border-bottom: 0;
 
             a {
-                color: red;
+                color: $color-danger;
             }
         }
 

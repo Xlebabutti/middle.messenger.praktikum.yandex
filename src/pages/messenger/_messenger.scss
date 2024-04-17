@@ -1,3 +1,10 @@
+$color-border: #eaeaea;
+$color-background: #fbfbfb;
+$color-secondary-background: #f8f8f8;
+$color-primary: #3369f3;
+$color-secondary: #999;
+$color-danger: red;
+
 .messenger {
     display: flex;
     justify-content: space-between;
@@ -6,13 +13,13 @@
 
     &__left {
         flex: 1;
-        border-right: 1px solid #eaeaea;
+        border-right: 1px solid $color-border;
         padding: 1em;
-        background-color: #fbfbfb;
+        background-color: $color-background;
 
         &-header {
             height: 102px;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 1px solid $color-border;
             display: flex;
             flex-direction: column;
             justify-content: space-around;
@@ -20,7 +27,7 @@
 
         &-profile-link {
             text-decoration: none;
-            color: #999;
+            color: $color-secondary;
         }
 
         &-item {
@@ -28,7 +35,7 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 1em;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 1px solid $color-border;
             padding: 0.8em 0;
 
             &-title {
@@ -36,7 +43,7 @@
             }
 
             &-text {
-                color: #999;
+                color: $color-secondary;
                 font-size: 0.9em;
             }
 
@@ -47,7 +54,7 @@
                     justify-content: space-between;
 
                     &-time {
-                        color: #999;
+                        color: $color-secondary;
                         font-size: 0.5em;
                     }
 
@@ -55,7 +62,7 @@
                         border-radius: 50%;
                         width: 20px;
                         height: 20px;
-                        background-color: red;
+                        background-color: $color-danger;
                         color: white;
                         font-size: 0.8em;
                         display: flex;
@@ -142,7 +149,7 @@
             align-items: center;
             justify-content: space-between;
             height: 64px;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 1px solid $color-border;
         }
 
         &-avatar {
@@ -175,7 +182,7 @@
                     padding: 0.5em;
                     border-radius: 8px;
                     width: max-content;
-                    background-color: #f8f8f8;
+                    background-color: $color-secondary-background;
                 }
             }
 
@@ -199,7 +206,7 @@
 
         &-footer {
             height: 64px;
-            border-top: 1px solid #eaeaea;
+            border-top: 1px solid $color-border;
             display: flex;
             justify-content: space-between;
             align-items: center;

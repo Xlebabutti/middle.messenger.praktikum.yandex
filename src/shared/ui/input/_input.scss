@@ -37,7 +37,7 @@ $input-error-color: #ff2f2f;
         }
 
         :valid + label {
-            background-color: red;
+            background-color: $input-error-color;
         }
 
         &::placeholder {
