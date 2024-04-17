@@ -2,9 +2,8 @@
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
-
     font-synthesis: none;
-    text-rendering: optimizeLegibility;
+    text-rendering: optimizelegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -14,6 +13,7 @@ a {
     color: #3369f3;
     text-decoration: inherit;
 }
+
 a:hover {
     color: #3369f3a9;
 }
@@ -22,6 +22,7 @@ input {
     padding-block: 0;
     padding-inline: 0;
 }
+
 body {
     margin: 0;
     display: flex;
@@ -47,7 +48,6 @@ h1 {
     width: 340px;
     display: inline-block;
     border-radius: 12px;
-
     box-shadow: 0 0 6px #00000024;
 }
 
