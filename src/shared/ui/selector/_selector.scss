@@ -1,3 +1,6 @@
+$selector-box-shadow-color: #4d90fe;
+$selector-background-color: #f5f5f5;
+
 .selector {
     display: flex;
     flex-direction: column;
@@ -17,12 +20,12 @@
         transition: background-color 0.3s ease;
 
         &:hover {
-            background-color: #f5f5f5;
+            background-color: $selector-background-color;
         }
 
         &:focus {
             outline: none;
-            box-shadow: 0 0 0 2px #4d90fe;
+            box-shadow: 0 0 0 2px $selector-box-shadow-color;
         }
     }
 }

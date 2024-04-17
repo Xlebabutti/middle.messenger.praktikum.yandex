@@ -1,3 +1,15 @@
+$messenger-background-color: #fbfbfb;
+$messenger-border-color: #eaeaea;
+$messenger-search-background-color: #efefef;
+$messenger-search-placeholder-color: #999;
+$messenger-item-border-color: #eaeaea;
+$messenger-item-info-right-time-color: #999;
+$messenger-item-info-right-count-background-color: red;
+$messenger-item-info-right-count-color: white;
+$messenger-body-in-background-color: #f8f8f8;
+$messenger-body-out-background-color: #e4edfd;
+$messenger-footer-message-background-color: #efefef;
+
 .messenger {
     display: flex;
     justify-content: space-between;
@@ -6,13 +18,13 @@
 
     &__left {
         flex: 1;
-        border-right: 1px solid #eaeaea;
+        border-right: 1px solid $messenger-border-color;
         padding: 1em;
-        background-color: #fbfbfb;
+        background-color: $messenger-background-color;
 
         &-header {
             height: 102px;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 1px solid $messenger-item-border-color;
             display: flex;
             flex-direction: column;
             justify-content: space-around;
@@ -20,7 +32,7 @@
 
         &-profile-link {
             text-decoration: none;
-            color: #999;
+            color: $messenger-search-placeholder-color;
         }
 
         &-item {
@@ -28,7 +40,7 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 1em;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 1px solid $messenger-item-border-color;
             padding: 0.8em 0;
 
             &-title {
@@ -36,7 +48,7 @@
             }
 
             &-text {
-                color: #999;
+                color: $messenger-search-placeholder-color;
                 font-size: 0.9em;
             }
 
@@ -47,7 +59,7 @@
                     justify-content: space-between;
 
                     &-time {
-                        color: #999;
+                        color: $messenger-item-info-right-time-color;
                         font-size: 0.5em;
                     }
 
@@ -55,8 +67,8 @@
                         border-radius: 50%;
                         width: 20px;
                         height: 20px;
-                        background-color: red;
-                        color: white;
+                        background-color: $messenger-item-info-right-count-background-color;
+                        color: $messenger-item-info-right-count-color;
                         font-size: 0.8em;
                         display: flex;
                         align-items: center;
@@ -88,7 +100,7 @@
                 width: 100%;
                 height: 32px;
                 border-radius: 5px;
-                background-color: #efefef;
+                background-color: $messenger-footer-message-background-color;
                 padding: 0 2.7em;
 
                 &:focus {
@@ -142,7 +154,7 @@
             align-items: center;
             justify-content: space-between;
             height: 64px;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 1px solid $messenger-item-border-color;
         }
 
         &-avatar {
@@ -175,7 +187,7 @@
                     padding: 0.5em;
                     border-radius: 8px;
                     width: max-content;
-                    background-color: #f8f8f8;
+                    background-color: $messenger-body-in-background-color;
                 }
             }
 
@@ -192,14 +204,14 @@
                 text-align: -webkit-right;
 
                 p {
-                    background-color: #e4edfd;
+                    background-color: $messenger-body-out-background-color;
                 }
             }
         }
 
         &-footer {
             height: 64px;
-            border-top: 1px solid #eaeaea;
+            border-top: 1px solid $messenger-item-border-color;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -210,7 +222,7 @@
                 outline: 0;
                 border: 0;
                 padding: 0 1em;
-                background-color: #efefef;
+                background-color: $messenger-footer-message-background-color;
                 border-radius: 8px;
             }
 
@@ -220,7 +232,7 @@
 
             &-file {
                 margin-right: 1em;
-                background-color: white;
+                background-color: $messenger-item-info-right-count-color;
             }
 
             button {

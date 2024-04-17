@@ -1,8 +1,10 @@
+$button-background-color: #3369f3;
+
 .button {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #3369f3;
+    background: $button-background-color;
     border: none;
     padding: 0.8em 1.5em;
     color: white;

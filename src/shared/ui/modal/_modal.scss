@@ -1,29 +1,39 @@
+$modal-background-color: rgb(0 0 0 / 50%);
+$modal-content-background-color: #fefefe;
+$modal-content-border-color: #888;
+$modal-content-border-radius: 12px;
+$modal-content-padding: 20px;
+$modal-content-max-width: 340px;
+$modal-content-input-color: #8d8d8d;
+$modal-content-input-label-color: #3369f3;
+$modal-content-input-label-text-decoration-offset: 5px;
+$modal-content-error-color: #ff2f2f;
+
 .modal {
-    // display: none;
     position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgb(0 0 0 / 50%);
+    background-color: $modal-background-color;
 
     .modal-content {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        background-color: #fefefe;
+        background-color: $modal-content-background-color;
         margin: 15% auto;
-        padding: 20px;
-        border: 1px solid #888;
+        padding: $modal-content-padding;
+        border: 1px solid $modal-content-border-color;
         width: 80%;
         height: 257px;
-        max-width: 340px;
-        border-radius: 12px;
+        max-width: $modal-content-max-width;
+        border-radius: $modal-content-border-radius;
 
         & > div.input {
-            color: #8d8d8d;
+            color: $modal-content-input-color;
 
             input {
                 border: 0;
@@ -32,17 +42,17 @@
 
             label {
                 font-size: 1em;
-                color: #3369f3;
+                color: $modal-content-input-label-color;
                 display: inline;
                 position: relative;
                 cursor: pointer;
                 text-decoration: underline;
-                text-underline-offset: 5px;
+                text-underline-offset: $modal-content-input-label-text-decoration-offset;
             }
         }
     }
 }
 
 .error {
-    color: #ff2f2f;
+    color: $modal-content-error-color;
 }

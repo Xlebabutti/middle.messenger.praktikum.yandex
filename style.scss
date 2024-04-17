@@ -1,4 +1,11 @@
 :root {
+    --color-primary: #3369f3;
+    --color-primary-hover: #3369f3a9;
+    --color-secondary: #f7df1e;
+    --color-background: #1a1a1a;
+    --color-shadow: rgb(0 0 0 / 14%);
+    --color-shadow-strong: rgba(99, 102, 241, 0.6);
+
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
@@ -10,12 +17,12 @@
 
 a {
     font-weight: 500;
-    color: #3369f3;
+    color: var(--color-primary);
     text-decoration: inherit;
-}
 
-a:hover {
-    color: #3369f3a9;
+    &:hover {
+        color: var(--color-primary-hover);
+    }
 }
 
 input {
@@ -49,21 +56,21 @@ h1 {
     padding: 1.5em;
     will-change: filter;
     transition: filter 300ms;
-}
 
-.logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-}
+    &:hover {
+        filter: drop-shadow(0 0 2em var(--color-shadow-strong));
+    }
 
-.logo.vanilla:hover {
-    filter: drop-shadow(0 0 2em #f7df1eaa);
+    &.vanilla:hover {
+        filter: drop-shadow(0 0 2em var(--color-secondary));
+    }
 }
 
 .card {
     width: 340px;
     display: inline-block;
     border-radius: 12px;
-    box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
+    box-shadow: 0 0 6px 0 var(--color-shadow);
 }
 
 button {
@@ -73,7 +80,7 @@ button {
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #1a1a1a;
+    background-color: var(--color-background);
     cursor: pointer;
     transition: border-color 0.25s;
     width: 280px;

@@ -1,12 +1,16 @@
+$sidebar-background-color: #fbfbfb;
+$sidebar-border-color: #eaeaea;
+$sidebar-circle-background-color: #3369f3;
+
 .sidebar {
     &__body {
         width: 8em;
-        background-color: #fbfbfb;
+        background-color: $sidebar-background-color;
         height: 100%;
         position: absolute;
         left: 0;
         top: 0;
-        border-right: 1px solid #eaeaea;
+        border-right: 1px solid $sidebar-border-color;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -14,7 +18,7 @@
         &-circle {
             height: 50px;
             width: 50px;
-            background-color: #3369f3;
+            background-color: $sidebar-circle-background-color;
             border-radius: 50%;
             display: flex;
             align-items: center;
