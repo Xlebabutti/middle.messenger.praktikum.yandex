@@ -5,11 +5,12 @@
         "es2021": true
     },
     "extends": ["eslint:recommended", "prettier"],
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "plugins": ["prettier"],
+    "plugins": ["prettier", "@typescript-eslint"],
     "rules": {
         "no-console": "warn",
         "quote-props": "off",
@@ -17,6 +18,16 @@
             "error",
             {
                 "endOfLine": "auto"
+            }
+        ],
+        "@typescript-eslint/ban-ts-comment": [
+            "error",
+            {
+                "ts-check": true,
+                "ts-expect-error": true,
+                "ts-ignore": true,
+                "ts-nocheck": true,
+                "minimumDescriptionLength": 3
             }
         ]
     }

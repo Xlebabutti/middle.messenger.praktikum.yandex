@@ -4,6 +4,11 @@ node_modules
 # Generated folders
 /public/
 /dist/
+server.js
 
 # History
 .history
+
+# JS
+server.js
+vite.config.js
