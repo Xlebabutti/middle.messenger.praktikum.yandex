@@ -27,8 +27,6 @@
         "vite-plugin-stylelint": "^5.3.1"
     },
     "dependencies": {
-        "@typescript-eslint/eslint-plugin": "^7.7.0",
-        "@typescript-eslint/parser": "^7.7.0",
         "express": "^4.19.2"
     }
 }
