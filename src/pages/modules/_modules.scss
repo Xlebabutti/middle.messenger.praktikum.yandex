@@ -1,0 +1,12 @@
+$modules-border-color: #3369f3;
+
+.modules {
+    .modal {
+        .modal-content {
+            > div.input input {
+                border-bottom: 1px solid $modules-border-color;
+                visibility: visible;
+            }
+        }
+    }
+}

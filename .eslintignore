@@ -1,0 +1,14 @@
+node_modules
+.github
+
+# Generated folders
+/public/
+/dist/
+server.js
+
+# History
+.history
+
+# JS
+server.js
+vite.config.js

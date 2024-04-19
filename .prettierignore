@@ -1,0 +1,12 @@
+node_modules
+.github
+
+# Generated folders
+/public/
+/dist/
+
+# History
+.history
+
+# .hbs
+**/*.hbs

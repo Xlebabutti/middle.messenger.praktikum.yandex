@@ -1,0 +1,51 @@
+$primary-color: #1e1e1e;
+$secondary-color: #f2f2f2;
+$accent-color: #4caf50;
+$error-color: #ff2f2f;
+
+.form {
+    &__header {
+        padding: 1.5em;
+
+        &-title {
+            font-size: 1.25em;
+            font-weight: 500;
+            color: $primary-color;
+        }
+
+        &-discription {
+            font-size: 0.8em;
+        }
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 30px 10px;
+
+        &-buttons {
+            margin-top: 7.5em;
+        }
+    }
+
+    &__footer {
+        font-size: 0.8em;
+        padding-bottom: 30px;
+    }
+
+    &__registration {
+        input[type='password'] {
+            color: $error-color;
+        }
+    }
+
+    &__profileChangesData,
+    &__profileChangesPassword {
+        .profile {
+            &__body-info {
+                margin-bottom: 10em;
+            }
+        }
+    }
+}
