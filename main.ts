@@ -1,10 +1,10 @@
 import * as Pages from './src/pages';
 import {
     LoginPageData,
-    LoginPageDataEmpty,
-    LoginPageDataErrorLogin,
-    LoginPageDataErrorLoginPassword,
-    LoginPageDataRegistration,
+    // LoginPageDataEmpty,
+    // LoginPageDataErrorLogin,
+    // LoginPageDataErrorLoginPassword,
+    // LoginPageDataRegistration,
 } from './src/pages/login/login-data';
 import { SelectorData } from './src/pages/modules/modules-data';
 
@@ -24,11 +24,11 @@ import './style.scss';
 setupPartials();
 
 const pages = {
-    Login: [Pages.Login, LoginPageData],
-    LoginEmpty: [Pages.Login, LoginPageDataEmpty],
-    LoginError: [Pages.Login, LoginPageDataErrorLogin],
-    LoginErrorPassword: [Pages.Login, LoginPageDataErrorLoginPassword],
-    LoginErrorRegistration: [Pages.Login, LoginPageDataRegistration],
+    Login: [Pages.LoginPage, LoginPageData],
+    // LoginEmpty: [Pages.Login, LoginPageDataEmpty],
+    // LoginError: [Pages.Login, LoginPageDataErrorLogin],
+    // LoginErrorPassword: [Pages.Login, LoginPageDataErrorLoginPassword],
+    // LoginErrorRegistration: [Pages.Login, LoginPageDataRegistration],
 
     Profile: [Pages.Profile, ProfilePageData],
     ProfileChangesData: [Pages.Profile, ProfilePageChangesData],
@@ -50,10 +50,12 @@ const pages = {
 };
 
 document.addEventListener('DOMContentLoaded', () =>
-    navigateOnClient(pages, 'Home'),
+    navigateOnClient(pages, 'Login'),
 );
 
 document.addEventListener('click', (event) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-expect-error
     const page = event.target.getAttribute('page');
     if (page) {
         navigateOnClient(pages, page);

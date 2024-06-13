@@ -1,0 +1,38 @@
+import Block from '../../utils/block';
+
+class Form extends Block {
+    constructor(props: unknown) {
+        super(props);
+    }
+
+    protected render(): string {
+        return `
+            <form action='#' class='form__{{formType}}'>
+                <div class='form__header'>
+                    <h1 class='form__header-title'>{{formHeaderTitle}}</h1>
+                </div>
+
+                <div class='form__body'>
+                    {{#each inputs}}
+                        {{> Input }}
+                    {{/each}}
+                    
+                    <div class='form__body-buttons'>
+                        {{#each buttons}}
+                            {{> Button }}
+                        {{/each}}
+                    </div>
+                </div>
+
+                <div class='form__footer'>
+                    <span class='form__footer-title'>{{formFooterTitle}}</span><a
+                        href=''
+                        class='form__footer-link'
+                    >{{formFooterLink}}</a>
+                </div>
+            </form>
+        `;
+    }
+}
+
+export { Form };

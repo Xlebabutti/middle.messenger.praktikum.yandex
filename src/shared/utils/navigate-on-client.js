@@ -1,9 +1,13 @@
-import Handlebars from 'handlebars';
+// import Handlebars from 'handlebars';
 
 export function navigateOnClient(pages, page) {
-    if (page) {
-        const [source, context] = pages[page];
-        const app = document.getElementById('app');
-        app.innerHTML = Handlebars.compile(source)(context);
+    const app = document.getElementById('app');
+    console.log(pages);
+    const [source, context] = pages[page];
+    if (source instanceof Object) {
+        const page = new source(context);
+        app.innerHTML = '';
+        app.append(page.getContent());
+        return;
     }
 }
