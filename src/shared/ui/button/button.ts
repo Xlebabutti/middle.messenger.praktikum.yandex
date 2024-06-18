@@ -1,5 +1,5 @@
 import Block from '../../utils/block';
-import { ButtonProps } from './button.types';
+import { ButtonProps } from './button-props';
 
 export class Button extends Block {
     constructor(props: ButtonProps) {
@@ -10,9 +10,8 @@ export class Button extends Block {
     }
 
     protected render(): string {
-        const { type, text } = this.props;
         return `
-            <button class="button ${{ type }}">${{ text }}</button>
+            <button class="button {{ type }}">{{ text }}</button>
         `;
     }
 }

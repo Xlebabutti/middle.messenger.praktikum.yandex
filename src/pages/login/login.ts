@@ -1,4 +1,4 @@
-import { Form } from '../../shared/ui/form/form';
+import { FormLogin } from '../../shared/ui';
 import Block from '../../shared/utils/block';
 
 class LoginPage extends Block {
@@ -7,7 +7,12 @@ class LoginPage extends Block {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             //@ts-ignore
             ...props,
-            Form: new Form({}),
+            Form: new FormLogin({
+                formType: 'login',
+                formHeaderTitle: 'Login',
+                formFooterTitle: 'Don’t have an account?',
+                formFooterLink: 'Register here',
+            }),
         });
     }
 

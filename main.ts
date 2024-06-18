@@ -17,11 +17,11 @@ import {
     ProfilePageChangesPassword,
     ProfilePageData,
 } from './src/pages/profile/profile-data';
-import { setupPartials } from './src/shared/ui';
+// import { setupPartials } from './src/shared/ui';
 import { navigateOnClient } from './src/shared/utils/navigate-on-client';
 import './style.scss';
 
-setupPartials();
+// setupPartials();
 
 const pages = {
     Login: [Pages.LoginPage, LoginPageData],
