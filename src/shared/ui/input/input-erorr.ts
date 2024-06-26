@@ -2,7 +2,7 @@ import Block from '../../utils/block';
 import { Input } from './input';
 import { InputProps } from './input-props';
 
-class InputElement extends Block {
+class InputErorr extends Block {
     constructor(props: InputProps) {
         super({
             Input: new Input({
@@ -27,5 +27,3 @@ class InputElement extends Block {
         `;
     }
 }
-
-export { InputElement };

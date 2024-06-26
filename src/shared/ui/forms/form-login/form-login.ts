@@ -4,29 +4,72 @@ import { InputElement } from '../../input';
 
 class FormLogin extends Block {
     constructor(props: unknown) {
-        super({
-            ...props,
-            InputLogin: new InputElement({
-                type: 'login',
-                name: 'login',
-                placeholder: 'login',
-                label: 'test login',
-                onBlur: (e) => {
-                    if (e.target.value === 'erorr') {
-                        console.log('error');
-                    }
-                },
-            }),
-            InputPassword: new InputElement({
-                type: 'password',
-                name: 'password',
-                placeholder: 'password',
-                label: 'test password',
-            }),
-            ButtonLogin: new Button({
-                type: 'primary',
-                text: 'Авторизоваться',
-            }),
+        super(props);
+        this.state = {
+            login: '',
+            password: '',
+        };
+        this.init();
+    }
+
+    init(): void {
+        const onLoginBind = this.onLogin.bind(this);
+        const onChangeLoginBind = this.onChangeLogin.bind(this);
+        const onChangePasswordBind = this.onChangePassword.bind(this);
+
+        const InputLogin = new InputElement({
+            type: 'login',
+            name: 'login',
+            placeholder: 'login',
+            label: 'test login',
+            onBlur: onChangeLoginBind,
+        });
+        const InputPassword = new InputElement({
+            type: 'password',
+            name: 'password',
+            placeholder: 'password',
+            label: 'test password',
+            onBlur: onChangePasswordBind,
+        });
+        const ButtonLogin = new Button({
+            type: 'primary',
+            text: 'Авторизоваться',
+            onClick: onLoginBind,
+        });
+
+        this.children = {
+            ...this.children,
+            InputLogin,
+            InputPassword,
+            ButtonLogin,
+        };
+    }
+
+    onChangeLogin(e) {
+        const inputValue = e.target.value;
+        console.log(inputValue);
+        // this.setProps({ login: inputValue });
+        this.state.login = inputValue;
+    }
+
+    onChangePassword(e) {
+        const inputPassword = e.target.value;
+        // this.setProps({ password: inputPassword });
+        this.state.password = inputPassword;
+    }
+
+    onLogin(e) {
+        e.preventDefault();
+        const loginValue = this.state.login;
+        const passwordValue = this.state.password;
+
+        if (!loginValue || !passwordValue) {
+            return;
+        }
+
+        console.log({
+            loginValue,
+            passwordValue,
         });
     }
 

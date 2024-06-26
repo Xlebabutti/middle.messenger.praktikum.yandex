@@ -1,3 +1,5 @@
+import { InputElement } from './input-element';
+
 export interface InputProps {
     onBlur?: () => void;
     type: string;
@@ -7,4 +9,5 @@ export interface InputProps {
     value?: string;
     inputText?: string;
     errorName?: string;
+    events?: InputElement;
 }
