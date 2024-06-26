@@ -16,7 +16,7 @@ class Input extends Block {
                 value="{{value}}"
             />{{inputText}}
             <label for="{{name}}" class="label">{{label}}</label>
-            <span class="error-{{name}}">{{errorName}}</span>
+            
         `;
     }
 }
