@@ -26,3 +26,4 @@
 export { FormLogin } from './forms';
 export { InputElement } from './input';
 export { Button } from './button';
+export { ProfileImage, ProfileBody } from './profile';

@@ -1,5 +1,5 @@
 // // export { Login } from './login';
-// export { Profile, ProfileModal } from './profile';
+export { ProfilePage } from './profile';
 // export { Messenger, MessengerToChoose } from './messenger';
 
 // export { Home } from './home';

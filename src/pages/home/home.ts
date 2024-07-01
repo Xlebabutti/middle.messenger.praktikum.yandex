@@ -10,24 +10,7 @@ class HomePage extends Block {
                         <li class="nav__item">
                             <a page="Login" class="nav__item-link">Логин главная</a>
                         </li>
-                        <li class="nav__item">
-                            <a page="LoginError" class="nav__item-link">Логин неверный логин
-                                без пароля</a>
-                        </li>
-                        <li class="nav__item">
-                            <a page="LoginErrorPassword" class="nav__item-link">Логин
-                                неверный логин с паролем</a>
-                        </li>
-                        <li class="nav__item">
-                            <a page="LoginEmpty" class="nav__item-link">Логин пустая форма</a>
-                        </li>
-                        <li class="nav__item">
-                            <a
-                                page="LoginErrorRegistration"
-                                class="nav__item-link"
-                            >Зарегестрироваться</a>
-                        </li>
-
+                      
                         <p>---------------------------------------</p>
 
                         <li class="nav__item">

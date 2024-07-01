@@ -1,11 +1,5 @@
 import * as Pages from './src/pages';
-import {
-    LoginPageData,
-    // LoginPageDataEmpty,
-    // LoginPageDataErrorLogin,
-    // LoginPageDataErrorLoginPassword,
-    // LoginPageDataRegistration,
-} from './src/pages/login/login-data';
+
 // import { SelectorData } from './src/pages/modules/modules-data';
 
 // import {
@@ -24,13 +18,9 @@ import './style.scss';
 // setupPartials();
 
 const pages = {
-    Login: [Pages.LoginPage, LoginPageData],
-    // LoginEmpty: [Pages.Login, LoginPageDataEmpty],
-    // LoginError: [Pages.Login, LoginPageDataErrorLogin],
-    // LoginErrorPassword: [Pages.Login, LoginPageDataErrorLoginPassword],
-    // LoginErrorRegistration: [Pages.Login, LoginPageDataRegistration],
+    Login: [Pages.LoginPage],
 
-    // Profile: [Pages.Profile, ProfilePageData],
+    Profile: [Pages.ProfilePage],
     // ProfileChangesData: [Pages.Profile, ProfilePageChangesData],
     // ProfileChangesPassword: [Pages.Profile, ProfilePageChangesPassword],
     // ProfileModalFileToLoad: [Pages.ProfileModal, ProfileModalFileToLoad],
@@ -50,7 +40,7 @@ const pages = {
 };
 
 document.addEventListener('DOMContentLoaded', () =>
-    navigateOnClient(pages, 'Home'),
+    navigateOnClient(pages, 'Profile'),
 );
 
 document.addEventListener('click', (event) => {

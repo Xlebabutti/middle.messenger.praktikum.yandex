@@ -19,9 +19,6 @@ class InputElement extends Block {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     componentDidUpdate(oldProps: any, newProps: any): boolean {
         if (oldProps === newProps) return false;
-
-        console.log(oldProps, newProps, 'update');
-
         this.children.InputError.setProps(newProps);
         return true;
     }
