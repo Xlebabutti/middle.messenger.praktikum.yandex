@@ -83,7 +83,7 @@ export default class Block {
 
     _componentDidMount() {
         this.componentDidMount();
-        console.log('CDM');
+        console.log(this.componentDidMount());
 
         Object.values(this.children).forEach((child) => {
             child.dispatchComponentDidMount();

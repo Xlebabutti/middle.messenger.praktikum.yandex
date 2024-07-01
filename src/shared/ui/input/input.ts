@@ -9,7 +9,7 @@ class Input extends Block {
     render(): string {
         return `
             <input
-                type="{{props.type}}"
+                type="{{type}}"
                 name="{{name}}"
                 id="{{name}}"
                 placeholder="{{placeholder}}"

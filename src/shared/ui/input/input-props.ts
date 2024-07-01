@@ -8,6 +8,6 @@ export interface InputProps {
     label: string;
     value?: string;
     inputText?: string;
-    errorName?: string;
+    errorText?: string;
     events?: InputElement;
 }

@@ -51,7 +51,7 @@ $input-error-color: #ff2f2f;
             display: block;
         }
 
-        & ~ .error-email,
+        & ~ .error-login,
         & ~ .error-password,
         & ~ .error-newpassword {
             color: $input-error-color;

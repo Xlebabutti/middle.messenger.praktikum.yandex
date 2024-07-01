@@ -3,15 +3,6 @@ import { Button } from '../../button';
 import { InputElement } from '../../input';
 
 class FormLogin extends Block {
-    constructor(props: unknown) {
-        super(props);
-        this.state = {
-            login: '',
-            password: '',
-        };
-        this.init();
-    }
-
     init(): void {
         const onLoginBind = this.onLogin.bind(this);
         const onChangeLoginBind = this.onChangeLogin.bind(this);
@@ -45,23 +36,34 @@ class FormLogin extends Block {
         };
     }
 
-    onChangeLogin(e) {
+    onChangeLogin(e: Event) {
         const inputValue = e.target.value;
-        console.log(inputValue);
-        // this.setProps({ login: inputValue });
-        this.state.login = inputValue;
+        if (inputValue) {
+            this.children.InputLogin.setProps({
+                errorText: 'inputValue',
+                name: 'login',
+            });
+        }
+
+        this.setProps({ login: inputValue });
     }
 
-    onChangePassword(e) {
-        const inputPassword = e.target.value;
-        // this.setProps({ password: inputPassword });
-        this.state.password = inputPassword;
+    onChangePassword(e: Event) {
+        const inputValue = e.target.value;
+        if (inputValue) {
+            this.children.InputPassword.setProps({
+                errorText: 'inputVaqwelue',
+                name: 'password',
+            });
+        }
+
+        this.setProps({ password: inputValue });
     }
 
     onLogin(e) {
         e.preventDefault();
-        const loginValue = this.state.login;
-        const passwordValue = this.state.password;
+        const loginValue = this.props.login;
+        const passwordValue = this.props.password;
 
         if (!loginValue || !passwordValue) {
             return;
