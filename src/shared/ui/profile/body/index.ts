@@ -1,1 +1,1 @@
-export { ProfileBody } from './body';
+export { ProfileInfoItem } from './body';

@@ -22,8 +22,8 @@ class ProfilePage extends Block {
     render(): string {
         return `
             <div class='profile'>
-                    {{{ ProfileImg }}}
-
+                {{{ Sidebar }}}
+                {{{ ProfileImg }}}
                 <div class='profile__body'>
                     {{{ ProfileForm }}}
                 </div>
