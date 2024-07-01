@@ -7,6 +7,7 @@ class ProfilePage extends Block {
         const ProfileImg = new ProfileImage({
             profileImgSrc: '/not-avatar.svg',
             profileTitle: 'Иван',
+            profileActionsName: 'Изменить данные',
         });
 
         const ProfileForm = new FormProfile({});
@@ -21,9 +22,7 @@ class ProfilePage extends Block {
     render(): string {
         return `
             <div class='profile'>
-               
                     {{{ ProfileImg }}}
-              
 
                 <div class='profile__body'>
                     {{{ ProfileForm }}}
