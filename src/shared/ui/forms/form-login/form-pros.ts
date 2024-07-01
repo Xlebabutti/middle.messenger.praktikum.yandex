@@ -1,3 +1,3 @@
-export interface FormProps {
-    [key: string]: string;
-}
+// export interface FormProps {
+//     [key: string]: string;
+// }

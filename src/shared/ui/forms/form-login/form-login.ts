@@ -1,4 +1,5 @@
 import Block from '../../../utils/block';
+import { Validator } from '../../../utils/validator';
 import { Button } from '../../button';
 import { InputElement } from '../../input';
 
@@ -37,30 +38,30 @@ class FormLogin extends Block {
     }
 
     onChangeLogin(e: Event) {
-        const inputValue = e.target.value;
-        if (inputValue) {
-            this.children.InputLogin.setProps({
-                errorText: 'inputValue',
-                name: 'login',
-            });
-        }
+        const inputValue = (e.target as HTMLInputElement).value;
+        const validationResult = Validator.validateLogin(inputValue);
+
+        this.children.InputLogin.setProps({
+            errorText: validationResult.errorText,
+            name: 'login',
+        });
 
         this.setProps({ login: inputValue });
     }
 
     onChangePassword(e: Event) {
-        const inputValue = e.target.value;
-        if (inputValue) {
-            this.children.InputPassword.setProps({
-                errorText: 'inputVaqwelue',
-                name: 'password',
-            });
-        }
+        const inputValue = (e.target as HTMLInputElement).value;
+        const validationResult = Validator.validatePassword(inputValue);
+
+        this.children.InputPassword.setProps({
+            errorText: validationResult.errorText,
+            name: 'password',
+        });
 
         this.setProps({ password: inputValue });
     }
 
-    onLogin(e) {
+    onLogin(e: Event) {
         e.preventDefault();
         const loginValue = this.props.login;
         const passwordValue = this.props.password;

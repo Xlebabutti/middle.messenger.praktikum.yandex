@@ -6,17 +6,17 @@ import {
     // LoginPageDataErrorLoginPassword,
     // LoginPageDataRegistration,
 } from './src/pages/login/login-data';
-import { SelectorData } from './src/pages/modules/modules-data';
+// import { SelectorData } from './src/pages/modules/modules-data';
 
-import {
-    ProfileModalFileError,
-    ProfileModalFileErrorLoad,
-    ProfileModalFileLoaded,
-    ProfileModalFileToLoad,
-    ProfilePageChangesData,
-    ProfilePageChangesPassword,
-    ProfilePageData,
-} from './src/pages/profile/profile-data';
+// import {
+//     ProfileModalFileError,
+//     ProfileModalFileErrorLoad,
+//     ProfileModalFileLoaded,
+//     ProfileModalFileToLoad,
+//     ProfilePageChangesData,
+//     ProfilePageChangesPassword,
+//     ProfilePageData,
+// } from './src/pages/profile/profile-data';
 // import { setupPartials } from './src/shared/ui';
 import { navigateOnClient } from './src/shared/utils/navigate-on-client';
 import './style.scss';
@@ -30,27 +30,27 @@ const pages = {
     // LoginErrorPassword: [Pages.Login, LoginPageDataErrorLoginPassword],
     // LoginErrorRegistration: [Pages.Login, LoginPageDataRegistration],
 
-    Profile: [Pages.Profile, ProfilePageData],
-    ProfileChangesData: [Pages.Profile, ProfilePageChangesData],
-    ProfileChangesPassword: [Pages.Profile, ProfilePageChangesPassword],
-    ProfileModalFileToLoad: [Pages.ProfileModal, ProfileModalFileToLoad],
-    ProfileModalFileLoaded: [Pages.ProfileModal, ProfileModalFileLoaded],
-    ProfileModalFileErrorLoad: [Pages.ProfileModal, ProfileModalFileErrorLoad],
-    ProfileModalFileError: [Pages.ProfileModal, ProfileModalFileError],
+    // Profile: [Pages.Profile, ProfilePageData],
+    // ProfileChangesData: [Pages.Profile, ProfilePageChangesData],
+    // ProfileChangesPassword: [Pages.Profile, ProfilePageChangesPassword],
+    // ProfileModalFileToLoad: [Pages.ProfileModal, ProfileModalFileToLoad],
+    // ProfileModalFileLoaded: [Pages.ProfileModal, ProfileModalFileLoaded],
+    // ProfileModalFileErrorLoad: [Pages.ProfileModal, ProfileModalFileErrorLoad],
+    // ProfileModalFileError: [Pages.ProfileModal, ProfileModalFileError],
 
-    Messenger: [Pages.Messenger],
-    MessengerToChoose: [Pages.MessengerToChoose],
+    // Messenger: [Pages.Messenger],
+    // MessengerToChoose: [Pages.MessengerToChoose],
 
-    Error404: [Pages.page404],
-    Error505: [Pages.page505],
+    // Error404: [Pages.page404],
+    // Error505: [Pages.page505],
 
-    Home: [Pages.Home],
+    Home: [Pages.HomePage],
 
-    OtherModules: [Pages.Modules, SelectorData],
+    // OtherModules: [Pages.Modules, SelectorData],
 };
 
 document.addEventListener('DOMContentLoaded', () =>
-    navigateOnClient(pages, 'Login'),
+    navigateOnClient(pages, 'Home'),
 );
 
 document.addEventListener('click', (event) => {
