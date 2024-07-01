@@ -41,8 +41,8 @@ const pages = {
     // Messenger: [Pages.Messenger],
     // MessengerToChoose: [Pages.MessengerToChoose],
 
-    // Error404: [Pages.page404],
-    // Error505: [Pages.page505],
+    Error404: [Pages.ErrorPage404],
+    Error505: [Pages.ErrorPage505],
 
     Home: [Pages.HomePage],
 
