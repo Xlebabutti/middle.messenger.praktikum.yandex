@@ -28,13 +28,16 @@ $color-error: #ff2f2f;
         max-width: 340px;
         border-radius: 12px;
 
+        & p {
+            color: $color-border;
+        }
+
         & > div {
             > div {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                color: $color-border;
 
                 input {
                     border: 0;
