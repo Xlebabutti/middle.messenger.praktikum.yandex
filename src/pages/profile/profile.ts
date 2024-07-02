@@ -20,7 +20,7 @@ class ProfilePage extends Block {
         const onChangeRepeatPasswordBind =
             this.onChangeRepeatPassword.bind(this);
         const onChangeAvatarBind = this.onChangeAvatar.bind(this);
-        const ononFileSelectBind = this.onFileSelect.bind(this);
+        const onFileSelectBind = this.onFileSelect.bind(this);
 
         const ProfileImg = new ProfileImage({
             profileImgSrc: '/not-avatar.svg',
@@ -54,6 +54,7 @@ class ProfilePage extends Block {
                 label: 'Почта',
                 value: 'pochta@yandex.ru',
                 readonly: 'readonly',
+                readonlyStatus: true,
             }),
 
             InfoLogin: new ProfileInfoItem({
@@ -64,6 +65,7 @@ class ProfilePage extends Block {
                 placeholder: 'Логин',
                 value: 'ivanivanov',
                 readonly: 'readonly',
+                readonlyStatus: true,
             }),
 
             InfoFirstName: new ProfileInfoItem({
@@ -74,6 +76,7 @@ class ProfilePage extends Block {
                 placeholder: 'Имя',
                 value: 'Иван',
                 readonly: 'readonly',
+                readonlyStatus: true,
             }),
 
             InfoSecondName: new ProfileInfoItem({
@@ -84,6 +87,7 @@ class ProfilePage extends Block {
                 placeholder: 'Фамилия',
                 value: 'Иванов',
                 readonly: 'readonly',
+                readonlyStatus: true,
             }),
 
             InfoPhone: new ProfileInfoItem({
@@ -94,6 +98,7 @@ class ProfilePage extends Block {
                 placeholder: 'Телефон',
                 value: '+7 (909) 967 30 30',
                 readonly: 'readonly',
+                readonlyStatus: true,
             }),
 
             OldPassword: new ProfileInfoItem({
@@ -130,6 +135,7 @@ class ProfilePage extends Block {
             }),
 
             changePassword: true,
+            changeData: false,
         });
 
         const ProfileSidebar = new Sidebar({
@@ -143,7 +149,7 @@ class ProfilePage extends Block {
             text: 'Поменять',
             name: 'avatar',
             modalOpen: false,
-            onChange: ononFileSelectBind,
+            onChange: onFileSelectBind,
         });
 
         this.children = {
@@ -156,12 +162,31 @@ class ProfilePage extends Block {
     }
 
     onChangeData() {
-        console.log('asd');
-        this.children.ProfileForm.setProps({ changePassword: true });
+        this.updateInputsReadonlyStatus(false);
+        this.children.ProfileForm.setProps({ changeData: true });
+    }
+
+    updateInputsReadonlyStatus(isReadonly: boolean) {
+        const inputsToUpdate = [
+            'InfoEmail',
+            'InfoLogin',
+            'InfoFirstName',
+            'InfoSecondName',
+            'InfoPhone',
+        ];
+
+        inputsToUpdate.forEach((inputName) => {
+            if (this.children.ProfileForm.children[inputName]) {
+                this.children.ProfileForm.children[
+                    inputName
+                ].children.Input.children.Input.setProps({
+                    readonlyStatus: isReadonly,
+                });
+            }
+        });
     }
 
     onChangePassword() {
-        console.log('asd');
         this.children.ProfileForm.setProps({ changePassword: false });
     }
 
@@ -171,7 +196,6 @@ class ProfilePage extends Block {
 
         this.children.ProfileForm.children.NewPassword.setProps({
             errorText: validationResult.errorText,
-            name: 'login',
         });
 
         this.setProps({ newPassword: inputValue });

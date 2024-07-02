@@ -14,7 +14,9 @@ class Input extends Block {
                 id="{{name}}"
                 placeholder="{{placeholder}}"
                 value="{{value}}"
-                {{readonly}}
+                {{#if readonlyStatus}}
+                    readonly
+                {{/if}}    
             />{{inputText}}
         `;
     }

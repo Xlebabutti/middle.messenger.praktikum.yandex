@@ -10,7 +10,7 @@ class FormProfile extends Block {
     protected render(): string {
         return `
             <form action='#' class='form__{{formType}}'>
-             {{#if changePassword}}
+            {{#if changePassword}}
                     <ul class='profile__body-info'>
                         {{{ InfoEmail }}}
                         {{{ InfoLogin }}}
@@ -18,11 +18,18 @@ class FormProfile extends Block {
                         {{{ InfoSecondName }}}
                         {{{ InfoPhone }}}
                     </ul>
-                    <ul class='profile__footer-actions'>
-                        {{{ ActionChangeData }}}
-                        {{{ ActionChangePassword }}}
-                        {{{ ActionOut }}}
-                    </ul>
+                    {{#if changeData}}
+                        <ul class='profile__footer-buttons'>
+                            {{{ ButtonChangesPassword }}}
+                        </ul>
+                    {{else}}
+                        <ul class='profile__footer-actions'>
+                            {{{ ActionChangeData }}}
+                            {{{ ActionChangePassword }}}
+                            {{{ ActionOut }}}
+                        </ul>  
+                    {{/if}}
+                    
                 {{else}}
                     <ul class='profile__body-info'>
                         {{{ OldPassword }}}
@@ -32,6 +39,7 @@ class FormProfile extends Block {
                     <ul class='profile__footer-buttons'>
                        {{{ ButtonChangesPassword }}}
                     </ul>
+                    
                {{/if}}
             </form>
         `;
