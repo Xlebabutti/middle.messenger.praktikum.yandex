@@ -8,7 +8,10 @@ class InputElement extends Block {
         super({
             Input: new Input({
                 ...props,
-                events: { blur: props.onBlur || (() => {}) },
+                events: {
+                    blur: props.onBlur || (() => {}),
+                    change: props.onChange || (() => {}),
+                },
             }),
             InputError: new InputError({
                 error: props.errorText,

@@ -3,7 +3,7 @@ export { ProfilePage } from './profile';
 // export { Messenger, MessengerToChoose } from './messenger';
 
 // export { Home } from './home';
-// export { Modules } from './modules';
+export { Modules } from './modules';
 export { ErrorPage404, ErrorPage505 } from './error';
 
 export { LoginPage } from './login';

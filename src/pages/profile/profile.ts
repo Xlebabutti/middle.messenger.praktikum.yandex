@@ -1,5 +1,6 @@
 import {
     Button,
+    ModalWindow,
     ProfileAction,
     ProfileImage,
     ProfileInfoItem,
@@ -18,10 +19,13 @@ class ProfilePage extends Block {
         const onChangeOldPasswordBind = this.onChangeOldPassword.bind(this);
         const onChangeRepeatPasswordBind =
             this.onChangeRepeatPassword.bind(this);
+        const onChangeAvatarBind = this.onChangeAvatar.bind(this);
+        const ononFileSelectBind = this.onFileSelect.bind(this);
 
         const ProfileImg = new ProfileImage({
             profileImgSrc: '/not-avatar.svg',
             profileTitle: 'Иван',
+            onClick: onChangeAvatarBind,
         });
 
         const ProfileForm = new FormProfile({
@@ -132,11 +136,22 @@ class ProfilePage extends Block {
             sidebarImg: '/arrow.svg',
         });
 
+        const Modal = new ModalWindow({
+            modalTitle: 'Загрузите файл',
+            Inputlabel: 'Выбрать файл на компьютере',
+            type: 'file',
+            text: 'Поменять',
+            name: 'avatar',
+            modalOpen: false,
+            onChange: ononFileSelectBind,
+        });
+
         this.children = {
             ...this.children,
             ProfileImg,
             ProfileForm,
             ProfileSidebar,
+            Modal,
         };
     }
 
@@ -190,21 +205,38 @@ class ProfilePage extends Block {
         this.setProps({ save: validatorResult.save });
     }
 
-    onSaveNewPassword(e) {
+    onSaveNewPassword(e: Event) {
         e.preventDefault();
         const save = this.props.save;
 
         if (save) {
             alert('done save');
+            this.children.ProfileForm.setProps({ changePassword: true });
             return;
         }
 
         alert('error');
     }
 
+    onChangeAvatar() {
+        this.children.Modal.setProps({ modalOpen: true });
+    }
+
+    onFileSelect(e: Event) {
+        const file = e.target.files[0];
+        if (file) {
+            console.log(file);
+            this.children.Modal.setProps({
+                chooseFile: true,
+                modalFile: file.name,
+            });
+        }
+    }
+
     render(): string {
         return `
             <div class='profile'>
+                {{{ Modal }}}
                 {{{ ProfileSidebar }}}
                 {{{ ProfileImg }}}
                 <div class='profile__body'>

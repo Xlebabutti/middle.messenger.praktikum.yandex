@@ -36,7 +36,7 @@ const pages = {
 
     Home: [Pages.HomePage],
 
-    // OtherModules: [Pages.Modules, SelectorData],
+    // OtherModules: [Pages.Modules],
 };
 
 document.addEventListener('DOMContentLoaded', () =>
