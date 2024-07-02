@@ -88,7 +88,7 @@ class FormLogin extends Block {
                     {{{ InputLogin }}}
                     {{{ InputPassword }}}
                     <div class='form__body-buttons'>
-                    {{{ ButtonLogin }}}
+                        {{{ ButtonLogin }}}
                     </div>
                 </div>
 

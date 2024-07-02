@@ -4,8 +4,6 @@ import Block from '../../shared/utils/block';
 class LoginPage extends Block {
     constructor(props: unknown) {
         super({
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            //@ts-ignore
             ...props,
             Form: new FormLogin({
                 formType: 'login',
