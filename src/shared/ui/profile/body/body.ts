@@ -1,9 +1,9 @@
-import Block from '../../../utils/block';
+import Block, { Props } from '../../../utils/block';
 import { InputElement } from '../../input';
 import { InputError } from '../../input/input-erorr';
 
 class ProfileInfoItem extends Block {
-    constructor(props: unknown) {
+    constructor(props: Props) {
         super({
             ...props,
             Error: new InputError({

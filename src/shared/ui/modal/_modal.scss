@@ -33,26 +33,24 @@ $color-error: #ff2f2f;
         }
 
         & > div {
-            > div {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
-                input {
-                    border: 0;
-                    visibility: hidden;
-                }
+            input {
+                border: 0;
+                visibility: hidden;
+            }
 
-                label {
-                    font-size: 1em;
-                    color: $color-primary;
-                    display: inline;
-                    position: relative;
-                    cursor: pointer;
-                    text-decoration: underline;
-                    text-underline-offset: 5px;
-                }
+            label {
+                font-size: 1em;
+                color: $color-primary;
+                display: inline;
+                position: relative;
+                cursor: pointer;
+                text-decoration: underline;
+                text-underline-offset: 5px;
             }
         }
     }

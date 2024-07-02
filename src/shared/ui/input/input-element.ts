@@ -1,6 +1,7 @@
 import Block from '../../utils/block';
 import { Input } from './input';
 import { InputError } from './input-erorr';
+import { InputLabel } from './input-lable';
 import { InputProps } from './input-props';
 
 class InputElement extends Block {
@@ -13,6 +14,7 @@ class InputElement extends Block {
                     change: props.onChange || (() => {}),
                 },
             }),
+            InputLabel: new InputLabel({ ...props }),
             InputError: new InputError({
                 error: props.errorText,
             }),
@@ -30,6 +32,7 @@ class InputElement extends Block {
         return `
             <div>
                 {{{ Input }}}
+                {{{ InputLabel }}}
                 {{{ InputError }}}
             </div>
         `;

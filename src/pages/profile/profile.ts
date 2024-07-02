@@ -11,7 +11,7 @@ import Block from '../../shared/utils/block';
 import { Validator } from '../../shared/utils/validator';
 
 class ProfilePage extends Block {
-    init(): void {
+    init() {
         const onChangeDataBind = this.onChangeData.bind(this);
         const onChangePasswordBind = this.onChangePassword.bind(this);
         const onSaveNewPasswordBind = this.onSaveNewPassword.bind(this);
@@ -138,7 +138,7 @@ class ProfilePage extends Block {
 
         const Modal = new ModalWindow({
             modalTitle: 'Загрузите файл',
-            Inputlabel: 'Выбрать файл на компьютере',
+            InputLabel: 'Выбрать файл на компьютере',
             type: 'file',
             text: 'Поменять',
             name: 'avatar',

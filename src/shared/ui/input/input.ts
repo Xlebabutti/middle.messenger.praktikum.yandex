@@ -2,12 +2,11 @@ import Block, { Props } from '../../utils/block';
 
 class Input extends Block {
     constructor(props: Props) {
-        super(props);
+        super({ ...props });
     }
 
     render(): string {
         return `
-        <div>
             <input
                 class='{{class}}'
                 type="{{type}}"
@@ -17,8 +16,6 @@ class Input extends Block {
                 value="{{value}}"
                 {{readonly}}
             />{{inputText}}
-            <label for="{{name}}" class="label">{{Inputlabel}}</label>
-            </div>
         `;
     }
 }
