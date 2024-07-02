@@ -1,5 +1,6 @@
 interface ValidatorResult {
     errorText: string;
+    save?: boolean;
 }
 
 class Validator {
@@ -76,6 +77,22 @@ class Validator {
         }
         return {
             errorText: '',
+        };
+    }
+
+    static validatePasswordsMatch(
+        password: string,
+        confirmPassword: string,
+    ): ValidatorResult {
+        if (password !== confirmPassword) {
+            return {
+                errorText: 'Пароли не совпадают.',
+                save: false,
+            };
+        }
+        return {
+            errorText: '',
+            save: true,
         };
     }
 }

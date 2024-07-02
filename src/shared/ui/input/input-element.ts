@@ -25,7 +25,7 @@ class InputElement extends Block {
 
     render(): string {
         return `
-            <div class="input">
+            <div>
                 {{{ Input }}}
                 {{{ InputError }}}
             </div>

@@ -9,11 +9,13 @@ class Input extends Block {
     render(): string {
         return `
             <input
+                class='{{class}}'
                 type="{{type}}"
                 name="{{name}}"
                 id="{{name}}"
                 placeholder="{{placeholder}}"
                 value="{{value}}"
+                {{readonly}}
             />{{inputText}}
             <label for="{{name}}" class="label">{{label}}</label>
             

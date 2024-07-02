@@ -3,6 +3,7 @@ import Block from '../../../utils/block';
 class ProfileAction extends Block {
     constructor(props: unknown) {
         super(props);
+
         this.props.events = {
             click: this.props.onClick || (() => {}),
         };

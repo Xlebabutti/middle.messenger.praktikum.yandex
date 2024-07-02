@@ -38,9 +38,19 @@ $color-danger: red;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                position: relative;
                 padding: 0.8em;
                 font-weight: 500;
                 border-bottom: 1px solid $color-border;
+
+                .error {
+                    color: red;
+                    font-size: 0.5em;
+                    margin-top: 4em;
+                    margin-right: 1.7em;
+                    position: absolute;
+                    right: 0;
+                }
             }
 
             &-list:last-child {
