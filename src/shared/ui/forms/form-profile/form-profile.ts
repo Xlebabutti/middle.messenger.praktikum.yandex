@@ -20,7 +20,7 @@ class FormProfile extends Block {
                     </ul>
                     {{#if changeData}}
                         <ul class='profile__footer-buttons'>
-                            {{{ ButtonChangesPassword }}}
+                            {{{ ButtonChangeData }}}
                         </ul>
                     {{else}}
                         <ul class='profile__footer-actions'>
@@ -37,7 +37,7 @@ class FormProfile extends Block {
                         {{{ RepeatNewPassword }}}
                     </ul>
                     <ul class='profile__footer-buttons'>
-                       {{{ ButtonChangesPassword }}}
+                        {{{ ButtonChangesPassword }}}
                     </ul>
                     
                {{/if}}

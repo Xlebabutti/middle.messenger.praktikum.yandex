@@ -26,6 +26,7 @@ class ProfilePage extends Block {
         const onChangesNameBind = this.onChangesName.bind(this);
         const onChangesSecondNameBind = this.onChangesSecondName.bind(this);
         const onChangesPhoneBind = this.onChangesPhone.bind(this);
+        const onSaveChangesDataBind = this.onSaveChangesData.bind(this);
 
         const ProfileImg = new ProfileImage({
             profileImgSrc: '/not-avatar.svg',
@@ -144,6 +145,12 @@ class ProfilePage extends Block {
                 onClick: onSaveNewPasswordBind,
             }),
 
+            ButtonChangeData: new Button({
+                type: 'primary',
+                text: 'Сохранить',
+                onClick: onSaveChangesDataBind,
+            }),
+
             changePassword: true,
             changeData: false,
         });
@@ -207,6 +214,8 @@ class ProfilePage extends Block {
         this.children.ProfileForm.children.InfoEmail.setProps({
             errorText: validationResult.errorText,
         });
+
+        this.setProps({ email: inputValue });
     }
 
     onChangesLogin(e: Event) {
@@ -216,6 +225,8 @@ class ProfilePage extends Block {
         this.children.ProfileForm.children.InfoLogin.setProps({
             errorText: validationResult.errorText,
         });
+
+        this.setProps({ login: inputValue });
     }
 
     onChangesName(e: Event) {
@@ -225,6 +236,8 @@ class ProfilePage extends Block {
         this.children.ProfileForm.children.InfoFirstName.setProps({
             errorText: validationResult.errorText,
         });
+
+        this.setProps({ name: inputValue });
     }
 
     onChangesSecondName(e: Event) {
@@ -234,6 +247,8 @@ class ProfilePage extends Block {
         this.children.ProfileForm.children.InfoSecondName.setProps({
             errorText: validationResult.errorText,
         });
+
+        this.setProps({ secondName: inputValue });
     }
 
     onChangesPhone(e: Event) {
@@ -243,6 +258,8 @@ class ProfilePage extends Block {
         this.children.ProfileForm.children.InfoPhone.setProps({
             errorText: validationResult.errorText,
         });
+
+        this.setProps({ phone: inputValue });
     }
 
     onChangeNewPassword(e: Event) {
@@ -310,6 +327,23 @@ class ProfilePage extends Block {
                 modalFile: file.name,
             });
         }
+    }
+
+    onSaveChangesData(e: Event) {
+        e.preventDefault();
+        const email = this.props.email;
+        const login = this.props.login;
+        const firstName = this.props.name;
+        const secondName = this.props.secondName;
+        const phone = this.props.phone;
+
+        console.log({
+            email,
+            login,
+            firstName,
+            secondName,
+            phone,
+        });
     }
 
     render(): string {
