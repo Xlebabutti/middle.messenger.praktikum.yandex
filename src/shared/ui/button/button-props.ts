@@ -1,5 +1,5 @@
 export interface ButtonProps {
-    type: 'primary' | 'link';
+    type: 'primary' | 'link' | 'submit';
     text: string;
     onClick: () => void;
 }

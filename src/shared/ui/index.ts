@@ -25,7 +25,7 @@
 
 export { ModalWindow } from './modal';
 export { Selector } from './selector';
-export { FormLogin } from './forms';
+export { FormLogin, FormRegistration } from './forms';
 export { InputElement } from './input';
 export { Button } from './button';
 export { ProfileImage, ProfileInfoItem, ProfileAction } from './profile';

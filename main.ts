@@ -19,7 +19,7 @@ import './style.scss';
 
 const pages = {
     Login: [Pages.LoginPage],
-
+    Registration: [Pages.RegistrationPage],
     Profile: [Pages.ProfilePage],
     // ProfileChangesData: [Pages.Profile, ProfilePageChangesData],
     // ProfileChangesPassword: [Pages.Profile, ProfilePageChangesPassword],
@@ -40,7 +40,7 @@ const pages = {
 };
 
 document.addEventListener('DOMContentLoaded', () =>
-    navigateOnClient(pages, 'Profile'),
+    navigateOnClient(pages, 'Registration'),
 );
 
 document.addEventListener('click', (event) => {

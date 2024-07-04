@@ -26,24 +26,6 @@ class HomePage extends Block {
                             <a page="Profile" class="nav__item-link">Профиль</a>
                         </li>
                         <li class="nav__item">
-                            <a page="ProfileChangesData" class="nav__item-link">Изменить
-                                данные</a>
-                        </li>
-                        <li class="nav__item">
-                            <a page="ProfileChangesPassword" class="nav__item-link">Изменить
-                                пароль</a>
-                        </li>
-                        <li class="nav__item">
-                            <a
-                                page="ProfileModalFileToLoad"
-                                class="nav__item-link"
-                            >Загрузить новый аватар</a>
-                        </li>
-                        <li class="nav__item">
-                            <a page="ProfileModalFileLoaded" class="nav__item-link">Файл
-                                загружен</a>
-                        </li>
-                        <li class="nav__item">
                             <a
                                 page="ProfileModalFileErrorLoad"
                                 class="nav__item-link"

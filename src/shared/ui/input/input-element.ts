@@ -7,6 +7,7 @@ import { InputProps } from './input-props';
 class InputElement extends Block {
     constructor(props: InputProps) {
         super({
+            ...props,
             Input: new Input({
                 ...props,
                 events: {
@@ -30,7 +31,7 @@ class InputElement extends Block {
 
     render(): string {
         return `
-            <div>
+            <div class='{{ divInputClass }}'>
                 {{{ Input }}}
                 {{{ InputLabel }}}
                 {{{ InputError }}}

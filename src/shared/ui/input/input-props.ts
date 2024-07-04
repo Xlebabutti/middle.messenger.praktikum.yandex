@@ -10,4 +10,5 @@ export interface InputProps {
     inputText?: string;
     errorText?: string;
     events?: InputElement;
+    divInputClass?: string;
 }
