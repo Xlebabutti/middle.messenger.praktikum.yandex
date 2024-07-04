@@ -21,6 +21,11 @@ class ProfilePage extends Block {
             this.onChangeRepeatPassword.bind(this);
         const onChangeAvatarBind = this.onChangeAvatar.bind(this);
         const onFileSelectBind = this.onFileSelect.bind(this);
+        const onChangesEmailBind = this.onChangesEmail.bind(this);
+        const onChangesLoginBind = this.onChangesLogin.bind(this);
+        const onChangesNameBind = this.onChangesName.bind(this);
+        const onChangesSecondNameBind = this.onChangesSecondName.bind(this);
+        const onChangesPhoneBind = this.onChangesPhone.bind(this);
 
         const ProfileImg = new ProfileImage({
             profileImgSrc: '/not-avatar.svg',
@@ -55,6 +60,7 @@ class ProfilePage extends Block {
                 value: 'pochta@yandex.ru',
                 readonly: 'readonly',
                 readonlyStatus: true,
+                onBlur: onChangesEmailBind,
             }),
 
             InfoLogin: new ProfileInfoItem({
@@ -66,6 +72,7 @@ class ProfilePage extends Block {
                 value: 'ivanivanov',
                 readonly: 'readonly',
                 readonlyStatus: true,
+                onBlur: onChangesLoginBind,
             }),
 
             InfoFirstName: new ProfileInfoItem({
@@ -77,6 +84,7 @@ class ProfilePage extends Block {
                 value: 'Иван',
                 readonly: 'readonly',
                 readonlyStatus: true,
+                onBlur: onChangesNameBind,
             }),
 
             InfoSecondName: new ProfileInfoItem({
@@ -88,6 +96,7 @@ class ProfilePage extends Block {
                 value: 'Иванов',
                 readonly: 'readonly',
                 readonlyStatus: true,
+                onBlur: onChangesSecondNameBind,
             }),
 
             InfoPhone: new ProfileInfoItem({
@@ -99,6 +108,7 @@ class ProfilePage extends Block {
                 value: '+7 (909) 967 30 30',
                 readonly: 'readonly',
                 readonlyStatus: true,
+                onBlur: onChangesPhoneBind,
             }),
 
             OldPassword: new ProfileInfoItem({
@@ -188,6 +198,51 @@ class ProfilePage extends Block {
 
     onChangePassword() {
         this.children.ProfileForm.setProps({ changePassword: false });
+    }
+
+    onChangesEmail(e: Event) {
+        const inputValue = (e.target as HTMLInputElement).value;
+        const validationResult = Validator.validateEmail(inputValue);
+
+        this.children.ProfileForm.children.InfoEmail.setProps({
+            errorText: validationResult.errorText,
+        });
+    }
+
+    onChangesLogin(e: Event) {
+        const inputValue = (e.target as HTMLInputElement).value;
+        const validationResult = Validator.validateLogin(inputValue);
+
+        this.children.ProfileForm.children.InfoLogin.setProps({
+            errorText: validationResult.errorText,
+        });
+    }
+
+    onChangesName(e: Event) {
+        const inputValue = (e.target as HTMLInputElement).value;
+        const validationResult = Validator.validateName(inputValue);
+
+        this.children.ProfileForm.children.InfoFirstName.setProps({
+            errorText: validationResult.errorText,
+        });
+    }
+
+    onChangesSecondName(e: Event) {
+        const inputValue = (e.target as HTMLInputElement).value;
+        const validationResult = Validator.validateName(inputValue);
+
+        this.children.ProfileForm.children.InfoSecondName.setProps({
+            errorText: validationResult.errorText,
+        });
+    }
+
+    onChangesPhone(e: Event) {
+        const inputValue = (e.target as HTMLInputElement).value;
+        const validationResult = Validator.validatePhone(inputValue);
+
+        this.children.ProfileForm.children.InfoPhone.setProps({
+            errorText: validationResult.errorText,
+        });
     }
 
     onChangeNewPassword(e: Event) {
