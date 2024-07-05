@@ -12,6 +12,7 @@ class FormLogin extends Block {
         const InputLogin = new InputElement({
             type: 'login',
             name: 'login',
+            divInputClass: 'input',
             placeholder: 'login',
             label: 'test login',
             onBlur: onChangeLoginBind,
@@ -19,6 +20,7 @@ class FormLogin extends Block {
         const InputPassword = new InputElement({
             type: 'password',
             name: 'password',
+            divInputClass: 'input',
             placeholder: 'password',
             label: 'test password',
             onBlur: onChangePasswordBind,
@@ -43,7 +45,6 @@ class FormLogin extends Block {
 
         this.children.InputLogin.setProps({
             errorText: validationResult.errorText,
-            name: 'login',
         });
 
         this.setProps({ login: inputValue });
@@ -55,7 +56,6 @@ class FormLogin extends Block {
 
         this.children.InputPassword.setProps({
             errorText: validationResult.errorText,
-            name: 'password',
         });
 
         this.setProps({ password: inputValue });
@@ -63,16 +63,31 @@ class FormLogin extends Block {
 
     onLogin(e: Event) {
         e.preventDefault();
-        const loginValue = this.props.login;
-        const passwordValue = this.props.password;
 
-        if (!loginValue || !passwordValue) {
+        const { results, errors } = Validator.validateFormLogin(this.props);
+
+        if (errors.length > 0) {
+            console.error('Validation errors:', errors);
+
+            ['login', 'password'].forEach((key) => {
+                const inputKey = `Input${key.charAt(0).toUpperCase() + key.slice(1)}`;
+                const inputComponent = this.children[inputKey];
+                if (inputComponent) {
+                    inputComponent.setProps({
+                        errorText:
+                            results[key as keyof typeof results].errorText,
+                    });
+                } else {
+                    console.error(`Input component '${inputKey}' not found.`);
+                }
+            });
+
             return;
         }
-
+        const { login, password } = this.props;
         console.log({
-            loginValue,
-            passwordValue,
+            login,
+            password,
         });
     }
 

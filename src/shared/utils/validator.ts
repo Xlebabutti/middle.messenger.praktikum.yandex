@@ -5,30 +5,46 @@ interface ValidatorResult {
 }
 
 interface FormProps {
-    email: string;
-    login: string;
-    first_name: string;
-    second_name: string;
-    phone: string;
-    password: string;
-    newpassword: string;
+    email?: string;
+    login?: string;
+    firstName?: string;
+    secondName?: string;
+    phone?: string;
+    password?: string;
+    newpassword?: string;
 }
 
 class Validator {
     static validateLogin(login: string): ValidatorResult {
+        if (!login) {
+            return {
+                errorText: 'Логин не должен быть пустым.',
+                isValid: false,
+            };
+        }
+
         const loginRegex = /^(?=.*[a-zA-Z])[a-zA-Z0-9_-]{3,20}$/;
         const isValid = loginRegex.test(login);
+
         return {
             errorText: isValid
                 ? ''
-                : 'От 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов.',
+                : 'Логин должен состоять от 3 до 20 символов, содержать латинские буквы, цифры, дефис и подчеркивание, и начинаться хотя бы с одной буквы.',
             isValid,
         };
     }
 
     static validatePassword(password: string): ValidatorResult {
+        if (!password) {
+            return {
+                errorText: 'Пароль не должен быть пустым.',
+                isValid: false,
+            };
+        }
+
         const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/;
         const isValid = passwordRegex.test(password);
+
         return {
             errorText: isValid
                 ? ''
@@ -38,8 +54,16 @@ class Validator {
     }
 
     static validateName(name: string): ValidatorResult {
+        if (!name) {
+            return {
+                errorText: 'Имя не должно быть пустым.',
+                isValid: false,
+            };
+        }
+
         const nameRegex = /^[A-ZА-Я][a-zA-Zа-яА-Я-]*$/;
         const isValid = nameRegex.test(name);
+
         return {
             errorText: isValid
                 ? ''
@@ -49,8 +73,16 @@ class Validator {
     }
 
     static validateEmail(email: string): ValidatorResult {
+        if (!email) {
+            return {
+                errorText: 'Email не должен быть пустым.',
+                isValid: false,
+            };
+        }
+
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         const isValid = emailRegex.test(email);
+
         return {
             errorText: isValid
                 ? ''
@@ -60,8 +92,16 @@ class Validator {
     }
 
     static validatePhone(phone: string): ValidatorResult {
+        if (!phone) {
+            return {
+                errorText: 'Телефон не должен быть пустым.',
+                isValid: false,
+            };
+        }
+
         const phoneRegex = /^\+?\d{10,15}$/;
         const isValid = phoneRegex.test(phone);
+
         return {
             errorText: isValid
                 ? ''
@@ -93,14 +133,55 @@ class Validator {
         };
     }
 
+    static validateFormLogin(props: FormProps) {
+        const results = {
+            login: props.login
+                ? Validator.validateLogin(props.login)
+                : { errorText: 'Логин не должен быть пустым.', isValid: false },
+            password: props.password
+                ? Validator.validatePassword(props.password)
+                : {
+                      errorText: 'Пароль не должен быть пустым.',
+                      isValid: false,
+                  },
+        };
+
+        const errors = Object.keys(results)
+            .filter((key) => !results[key as keyof typeof results].isValid)
+            .map((key) => results[key as keyof typeof results].errorText);
+
+        return { results, errors };
+    }
+
     static validateForm(props: FormProps) {
         const results = {
-            Email: Validator.validateEmail(props.email),
-            Login: Validator.validateLogin(props.login),
-            FirstName: Validator.validateName(props.first_name),
-            SecondName: Validator.validateName(props.second_name),
-            Phone: Validator.validatePhone(props.phone),
-            Password: Validator.validatePassword(props.password),
+            email: props.email
+                ? Validator.validateEmail(props.email)
+                : { errorText: 'Email не должен быть пустым.', isValid: false },
+            login: props.login
+                ? Validator.validateLogin(props.login)
+                : { errorText: 'Логин не должен быть пустым.', isValid: false },
+            firstName: props.firstName
+                ? Validator.validateName(props.firstName)
+                : { errorText: 'Имя не должно быть пустым.', isValid: false },
+            secondName: props.secondName
+                ? Validator.validateName(props.secondName)
+                : {
+                      errorText: 'Фамилия не должна быть пустой.',
+                      isValid: false,
+                  },
+            phone: props.phone
+                ? Validator.validatePhone(props.phone)
+                : {
+                      errorText: 'Телефон не должен быть пустым.',
+                      isValid: false,
+                  },
+            password: props.password
+                ? Validator.validatePassword(props.password)
+                : {
+                      errorText: 'Пароль не должен быть пустым.',
+                      isValid: false,
+                  },
         };
 
         const errors = Object.keys(results)
