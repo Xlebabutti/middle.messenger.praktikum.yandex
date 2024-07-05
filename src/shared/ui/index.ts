@@ -22,7 +22,7 @@
 
 //     registerPartials(partials);
 // }
-
+export { Message } from './message';
 export { ModalWindow } from './modal';
 export { Selector } from './selector';
 export { FormLogin, FormRegistration } from './forms';

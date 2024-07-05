@@ -12,7 +12,7 @@ import * as Pages from './src/pages';
 //     ProfilePageData,
 // } from './src/pages/profile/profile-data';
 // import { setupPartials } from './src/shared/ui';
-import { navigateOnClient } from './src/shared/utils/navigate-on-client';
+import { navigateOnClient } from './src/shared/utils/navigate-on-client.ts';
 import './style.scss';
 
 // setupPartials();
@@ -21,14 +21,8 @@ const pages = {
     Login: [Pages.LoginPage],
     Registration: [Pages.RegistrationPage],
     Profile: [Pages.ProfilePage],
-    // ProfileChangesData: [Pages.Profile, ProfilePageChangesData],
-    // ProfileChangesPassword: [Pages.Profile, ProfilePageChangesPassword],
-    // ProfileModalFileToLoad: [Pages.ProfileModal, ProfileModalFileToLoad],
-    // ProfileModalFileLoaded: [Pages.ProfileModal, ProfileModalFileLoaded],
-    // ProfileModalFileErrorLoad: [Pages.ProfileModal, ProfileModalFileErrorLoad],
-    // ProfileModalFileError: [Pages.ProfileModal, ProfileModalFileError],
 
-    // Messenger: [Pages.Messenger],
+    Messenger: [Pages.Messenger],
     // MessengerToChoose: [Pages.MessengerToChoose],
 
     Error404: [Pages.ErrorPage404],
@@ -40,7 +34,7 @@ const pages = {
 };
 
 document.addEventListener('DOMContentLoaded', () =>
-    navigateOnClient(pages, 'Registration'),
+    navigateOnClient(pages, 'Messenger'),
 );
 
 document.addEventListener('click', (event) => {

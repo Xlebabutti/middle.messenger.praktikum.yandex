@@ -143,12 +143,27 @@ export default class Block {
             propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
         });
 
+        const childrenProps = [];
+        Object.entries(propsAndStubs).forEach(([key, value]) => {
+            if (Array.isArray(value)) {
+                propsAndStubs[key] = value
+                    .map((item) => {
+                        if (item instanceof Block) {
+                            childrenProps.push(item);
+                            return `<div data-id="${item._id}"></div>`;
+                        }
+
+                        return item;
+                    })
+                    .join('');
+            }
+        });
         const fragment = this._createDocumentElement('template');
 
         fragment.innerHTML = Handlebars.compile(this.render())(propsAndStubs);
         const newElement = fragment.content.firstElementChild;
 
-        Object.values(this.children).forEach((child) => {
+        [...Object.values(this.children), ...childrenProps].forEach((child) => {
             const stub = fragment.content.querySelector(
                 `[data-id="${child._id}"]`,
             );
@@ -157,6 +172,7 @@ export default class Block {
         });
 
         if (this._element) {
+            newElement.style.display = this._element.style.display;
             this._element.replaceWith(newElement);
         }
 
