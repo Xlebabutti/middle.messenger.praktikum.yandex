@@ -6,6 +6,8 @@
         "lib": ["ES2021", "DOM", "DOM.Iterable"],
         "skipLibCheck": true,
         "noImplicitAny": true,
+        "sourceMap": true,
+        "strictNullChecks": true,
         "moduleResolution": "bundler",
         "allowImportingTsExtensions": true,
         "resolveJsonModule": true,
