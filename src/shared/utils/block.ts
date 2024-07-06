@@ -7,15 +7,11 @@ import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 import EventBus from './event-bus';
 
-type TEvents = Values<typeof Block.EVENTS>;
-
 export type Props = {
     [key: string]: unknown;
-    watch?: Record<string, (newValue?: unknown, oldValue?: unknown) => void>;
-    events?: { [key: string]: () => void };
 };
 
-export default class Block {
+export default class Block<Props extends object> {
     static EVENTS = {
         INIT: 'init',
         FLOW_CDM: 'flow:component-did-mount',
