@@ -19,8 +19,6 @@ export class Block {
         FLOW_RENDER: 'flow:render',
     };
 
-    private _element: HTMLElement | null = null;
-    _meta = null;
     _id = nanoid(6);
 
     /** JSDoc
@@ -30,10 +28,12 @@ export class Block {
      * @returns {void}
      */
 
-    private _eventbus;
+    protected props: Props;
+    protected children: Props;
+    private _element: HTMLElement | null = null;
 
     constructor(propsWithChildren: Props) {
-        const eventBus = new EventBus();
+        const eventBus: EventBus = new EventBus();
 
         const { props, children } =
             this._getChildrenAndProps(propsWithChildren);
@@ -84,13 +84,7 @@ export class Block {
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
 
-    _createResources() {
-        const { tagName } = this._meta;
-        this._element = this._createDocumentElement(tagName);
-    }
-
     _init() {
-        // this._createResources();
         this.init();
 
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
