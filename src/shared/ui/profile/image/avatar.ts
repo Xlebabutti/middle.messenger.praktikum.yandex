@@ -1,7 +1,7 @@
-import Block from '../../../utils/block';
+import Block, { Props } from '../../../utils/block';
 
 class ProfileAvatar extends Block {
-    constructor(props: unknown) {
+    constructor(props: Props) {
         super(props);
         this.props.events = {
             click: this.props.onClick || (() => {}),

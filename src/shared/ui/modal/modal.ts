@@ -1,9 +1,9 @@
-import Block from '../../utils/block';
+import Block, { Props } from '../../utils/block';
 import { Button } from '../button';
 import { InputElement } from '../input';
 
 class ModalWindow extends Block {
-    constructor(props) {
+    constructor(props: Props) {
         super({
             ...props,
             InputModal: new InputElement({
@@ -15,7 +15,7 @@ class ModalWindow extends Block {
         });
     }
 
-    protected render(): string {
+    render(): string {
         return `
         <div>
             {{#if modalOpen}}

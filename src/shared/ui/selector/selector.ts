@@ -1,13 +1,13 @@
-import Block from '../../utils/block';
+import Block, { Props } from '../../utils/block';
 
 class Selector extends Block {
-    constructor(props) {
+    constructor(props: Props) {
         super({
             ...props,
         });
     }
 
-    protected render(): string {
+    render(): string {
         return `
             <div class="selector">
                 <button class="selector-item">
