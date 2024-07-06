@@ -1,15 +1,14 @@
-import Block from '../../utils/block';
-import { ButtonProps } from './button-props';
+import Block, { Props } from '../../utils/block';
 
 export class Button extends Block {
-    constructor(props: ButtonProps) {
+    constructor(props: Props) {
         super(props);
         this.props.events = {
             click: this.props.onClick || (() => {}),
         };
     }
 
-    protected render(): string {
+    render(): string {
         return `
             <button class="button {{ type }}">{{ text }}</button>
         `;

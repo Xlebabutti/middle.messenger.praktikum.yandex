@@ -1,8 +1,8 @@
-import Block from '../../utils/block';
+import Block, { Props } from '../../utils/block';
 import { InputElement } from '../input/input-element';
 
 class Form extends Block {
-    constructor(props: unknown) {
+    constructor(props: Props) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
         const children = props.inputs.reduce((acc, inputProps) => {
@@ -12,7 +12,7 @@ class Form extends Block {
         super({ ...props, children });
     }
 
-    protected render(): string {
+    render(): string {
         return `
         <div>
             <form action='#' class='form__{{formType}}'>

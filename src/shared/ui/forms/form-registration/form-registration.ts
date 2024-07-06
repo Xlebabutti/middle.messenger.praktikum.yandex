@@ -208,7 +208,7 @@ class FormRegistration extends Block {
         });
     }
 
-    protected render(): string {
+    render(): string {
         return `
         <div>
             <form action='#' class='form__{{formType}}'>

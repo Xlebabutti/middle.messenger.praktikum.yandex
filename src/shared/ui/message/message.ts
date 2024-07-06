@@ -1,5 +1,4 @@
- 
-import Block from '../../utils/block';
+import Block, { Props } from '../../utils/block';
 
 export interface MessageProps {
     id: string;
@@ -17,7 +16,7 @@ interface MessageData {
 }
 
 class Message extends Block {
-    constructor(props) {
+    constructor(props: Props) {
         super({
             ...props,
             active: props.activeId === props.id,

@@ -1,36 +1,15 @@
 import * as Pages from './src/pages';
-
-// import { SelectorData } from './src/pages/modules/modules-data';
-
-// import {
-//     ProfileModalFileError,
-//     ProfileModalFileErrorLoad,
-//     ProfileModalFileLoaded,
-//     ProfileModalFileToLoad,
-//     ProfilePageChangesData,
-//     ProfilePageChangesPassword,
-//     ProfilePageData,
-// } from './src/pages/profile/profile-data';
-// import { setupPartials } from './src/shared/ui';
 import { navigateOnClient } from './src/shared/utils/navigate-on-client.ts';
 import './style.scss';
-
-// setupPartials();
 
 const pages = {
     Login: [Pages.LoginPage],
     Registration: [Pages.RegistrationPage],
     Profile: [Pages.ProfilePage],
-
     Messenger: [Pages.Messenger],
-    // MessengerToChoose: [Pages.MessengerToChoose],
-
     Error404: [Pages.ErrorPage404],
     Error505: [Pages.ErrorPage505],
-
     Home: [Pages.HomePage],
-
-    // OtherModules: [Pages.Modules],
 };
 
 document.addEventListener('DOMContentLoaded', () =>

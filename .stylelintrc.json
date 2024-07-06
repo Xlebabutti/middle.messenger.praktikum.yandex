@@ -1,5 +1,3 @@
 {
-    "extends": "stylelint-config-standard-scss",
-    "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"]
+    "extends": ["stylelint-config-standard-scss"]
 }

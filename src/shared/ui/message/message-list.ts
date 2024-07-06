@@ -1,7 +1,7 @@
-import Block from '../../utils/block';
+import Block, { Props } from '../../utils/block';
 
 class MessageList extends Block {
-    constructor(props) {
+    constructor(props: Props) {
         super({
             ...props,
             events: {

@@ -1,14 +1,14 @@
-import Block from '../../utils/block';
+import Block, { Props } from '../../utils/block';
 
 export class ButtonImg extends Block {
-    constructor(props) {
+    constructor(props: Props) {
         super(props);
         this.props.events = {
             click: this.props.onClick || (() => {}),
         };
     }
 
-    protected render(): string {
+    render(): string {
         return `
             <button class="{{class}}" type="{{type}}">
                 <img src="{{src}}" alt="{{alt}}" />

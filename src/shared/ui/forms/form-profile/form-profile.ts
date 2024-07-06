@@ -1,13 +1,13 @@
-import Block from '../../../utils/block';
+import Block, { Props } from '../../../utils/block';
 
 class FormProfile extends Block {
-    constructor(props) {
+    constructor(props: Props) {
         super({
             ...props,
         });
     }
 
-    protected render(): string {
+    render(): string {
         return `
             <form action='#' class='form__{{formType}}'>
             {{#if changePassword}}
