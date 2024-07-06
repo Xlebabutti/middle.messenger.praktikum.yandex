@@ -1,16 +1,16 @@
 $color-primary: #3369f3;
 $color-primary-hover: #3369f3a9;
 $color-background: #1a1a1a;
-$color-shadow: rgba(0, 0, 0, 0.14);
-$color-shadow-strong: rgba(0, 0, 0, 0.24);
+$color-shadow: rgb(0 0 0 / 14%);
+$color-shadow-strong: rgb(0 0 0 / 24%);
 $color-highlight: #f7df1e;
 
 :root {
     --color-primary: #3369f3;
     --color-primary-hover: #3369f3a9;
     --color-background: #1a1a1a;
-    --color-shadow: rgba(0, 0, 0, 0.14);
-    --color-shadow-strong: rgba(0, 0, 0, 0.24);
+    --color-shadow: rgb(0 0 0 / 14%);
+    --color-shadow-strong: rgb(0 0 0 / 24%);
     --color-highlight: #f7df1e;
 
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
