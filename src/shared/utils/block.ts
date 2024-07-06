@@ -51,12 +51,34 @@ export default class Block<Props extends object> {
         eventBus.emit(Block.EVENTS.INIT);
     }
 
-    _addEvents() {
+    private _addEvents() {
         const { events = {} } = this.props;
 
-        Object.keys(events).forEach((eventName) => {
-            this._element.addEventListener(eventName, events[eventName]);
-        });
+        if (events) {
+            Object.keys(events).forEach((eventName) => {
+                if (this._element instanceof HTMLElement) {
+                    this._element.addEventListener(
+                        eventName,
+                        events[eventName],
+                    );
+                }
+            });
+        }
+    }
+
+    private _removeEvents() {
+        const { vents = {} } = this.props;
+
+        if (events) {
+            Object.keys(events).forEach((eventName) => {
+                if (this._element instanceof HTMLElement) {
+                    this._element.removeEventListener(
+                        eventName,
+                        events[eventName],
+                    );
+                }
+            });
+        }
     }
 
     _registerEvents(eventBus) {
@@ -174,6 +196,8 @@ export default class Block<Props extends object> {
             newElement.style.display = this._element.style.display;
             this._element.replaceWith(newElement);
         }
+
+        this._removeEvents();
 
         this._element = newElement;
 
