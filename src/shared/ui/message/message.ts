@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+ 
 import Block from '../../utils/block';
 
 export interface MessageProps {

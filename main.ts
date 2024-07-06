@@ -34,7 +34,7 @@ const pages = {
 };
 
 document.addEventListener('DOMContentLoaded', () =>
-    navigateOnClient(pages, 'Messenger'),
+    navigateOnClient(pages, 'Home'),
 );
 
 document.addEventListener('click', (event) => {
