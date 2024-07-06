@@ -9,7 +9,7 @@ import {
 } from '../../shared/ui';
 import { FormProfile } from '../../shared/ui/forms/form-profile';
 import { Sidebar } from '../../shared/ui/sidebar';
-import Block from '../../shared/utils/block';
+import { Block } from '../../shared/utils/block';
 import { Validator } from '../../shared/utils/validator';
 
 class ProfilePage extends Block {

@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+//@ts-nocheck
 import { Message, MessageActive } from '../../shared/ui';
 import { MessageList } from '../../shared/ui/message/message-list';
-import Block, { Props } from '../../shared/utils/block';
+import { Block, Props } from '../../shared/utils/block';
 
 interface ChatMessage {
     map(
@@ -26,8 +26,8 @@ interface ChatMessage {
     message: string;
     count: string;
 }
+
 class Messenger extends Block {
-    [x: string]: any;
     constructor(props: Props) {
         super({
             ...props,

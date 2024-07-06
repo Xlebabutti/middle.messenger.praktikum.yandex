@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Block, { Props } from '../../../utils/block';
+import { Block, Props } from '../../../utils/block';
 
 class ProfileSettings extends Block {
     [x: string]: any;

@@ -1,4 +1,4 @@
-import Block, { Props } from '../../utils/block';
+import { Block, Props } from '../../utils/block';
 
 export class ButtonImg extends Block {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

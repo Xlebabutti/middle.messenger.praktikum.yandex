@@ -1,4 +1,4 @@
-import Block from '../../utils/block';
+import { Block } from '../../utils/block';
 
 class InputError extends Block {
     render(): string {

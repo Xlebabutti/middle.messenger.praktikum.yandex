@@ -1,6 +1,6 @@
-import Block, { Props } from '../../utils/block';
+import { Block, Props } from '../../utils/block';
 
-export interface MessageProps {
+export interface messageProps {
     id: string;
     name: string;
     message: string;

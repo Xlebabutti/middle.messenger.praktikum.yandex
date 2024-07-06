@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import Block, { Props } from '../../utils/block';
+import { Block, Props } from '../../utils/block';
 import { Button } from '../button';
 import { InputElement } from '../input';
 
@@ -7,7 +7,6 @@ class ModalWindow extends Block {
     constructor(props: Props) {
         super({
             ...props,
-            //@ts-expect-error
             InputModal: new InputElement({
                 ...props,
             }),

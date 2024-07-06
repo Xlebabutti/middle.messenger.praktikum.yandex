@@ -1,4 +1,4 @@
-import Block from '../../../shared/utils/block';
+import { Block } from '../../../shared/utils/block';
 
 class ErrorPage404 extends Block {
     render() {

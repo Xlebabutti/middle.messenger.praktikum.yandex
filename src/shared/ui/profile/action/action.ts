@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Block, { Props } from '../../../utils/block';
+import { Block, Props } from '../../../utils/block';
 
 class ProfileAction extends Block {
     [x: string]: any;
@@ -13,14 +13,12 @@ class ProfileAction extends Block {
 
     render(): string {
         return `
-            
-                <li class='profile__footer-item'>
-                    <a
-                        class='profile__footer-name'
-                        href='{{href}}'
-                    >{{profileActionsName}}</a>
-                </li>
-          
+            <li class='profile__footer-item'>
+                <a
+                    class='profile__footer-name'
+                    href='{{href}}'
+                >{{profileActionsName}}</a>
+            </li>
         `;
     }
 }

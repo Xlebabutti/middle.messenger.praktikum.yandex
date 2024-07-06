@@ -1,5 +1,5 @@
 import { FormLogin } from '../../shared/ui';
-import Block, { Props } from '../../shared/utils/block';
+import { Block, Props } from '../../shared/utils/block';
 
 class LoginPage extends Block {
     constructor(props: Props) {

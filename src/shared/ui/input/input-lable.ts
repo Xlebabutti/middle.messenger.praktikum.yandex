@@ -1,4 +1,4 @@
-import Block from '../../utils/block';
+import { Block } from '../../utils/block';
 
 class InputLabel extends Block {
     render(): string {

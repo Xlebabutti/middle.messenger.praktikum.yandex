@@ -1,5 +1,5 @@
 import { Selector } from '../../shared/ui/selector';
-import Block, { Props } from '../../shared/utils/block';
+import { Block, Props } from '../../shared/utils/block';
 
 class Modules extends Block {
     constructor(props: Props) {

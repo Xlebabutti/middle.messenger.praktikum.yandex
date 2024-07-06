@@ -1,4 +1,4 @@
-import Block, { Props } from '../../utils/block';
+import { Block, Props } from '../../utils/block';
 
 class Sidebar extends Block {
     constructor(props: Props) {

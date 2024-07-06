@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-nocheck
-import Block, { Props } from '../../utils/block';
+import { Block, Props } from '../../utils/block';
 import { Validator } from '../../utils/validator';
 import { ButtonImg } from '../button';
 import { InputElement } from '../input';

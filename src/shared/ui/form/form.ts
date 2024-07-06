@@ -1,4 +1,4 @@
-import Block, { Props } from '../../utils/block';
+import { Block, Props } from '../../utils/block';
 import { InputElement } from '../input/input-element';
 
 class Form extends Block {

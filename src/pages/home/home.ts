@@ -1,4 +1,4 @@
-import Block from '../../shared/utils/block';
+import { Block } from '../../shared/utils/block';
 
 class HomePage extends Block {
     render(): string {

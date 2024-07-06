@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-nocheck
-import Block, { Props } from '../../utils/block';
+import { Block, Props } from '../../utils/block';
 import { Input } from './input';
 import { InputError } from './input-erorr';
 import { InputLabel } from './input-lable';

@@ -11,7 +11,7 @@ export type Props = {
     [key: string]: unknown;
 };
 
-export default class Block<Props extends object> {
+export class Block {
     static EVENTS = {
         INIT: 'init',
         FLOW_CDM: 'flow:component-did-mount',
@@ -67,7 +67,7 @@ export default class Block<Props extends object> {
     }
 
     private _removeEvents() {
-        const { vents = {} } = this.props;
+        const { events = {} } = this.props;
 
         if (events) {
             Object.keys(events).forEach((eventName) => {
