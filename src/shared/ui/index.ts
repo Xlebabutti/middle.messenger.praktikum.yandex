@@ -22,10 +22,16 @@
 
 //     registerPartials(partials);
 // }
-export { Message } from './message';
+export { Message, MessageActive } from './message';
 export { ModalWindow } from './modal';
 export { Selector } from './selector';
 export { FormLogin, FormRegistration } from './forms';
 export { InputElement } from './input';
-export { Button } from './button';
-export { ProfileImage, ProfileInfoItem, ProfileAction } from './profile';
+export { Button, ButtonImg } from './button';
+export {
+    ProfileImage,
+    ProfileInfoItem,
+    ProfileAction,
+    ProfileAvatar,
+    ProfileSettings,
+} from './profile';

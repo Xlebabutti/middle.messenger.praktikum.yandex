@@ -1,4 +1,4 @@
-import { Message } from '../../shared/ui';
+import { Message, MessageActive } from '../../shared/ui';
 import { MessageList } from '../../shared/ui/message/message-list';
 import Block from '../../shared/utils/block';
 
@@ -56,13 +56,17 @@ class Messenger extends Block {
                 ) || [],
         });
 
+        const ActiveMessage = new MessageActive({});
+
         this.children = {
             ListMessage,
+            ActiveMessage,
         };
     }
 
     onMessageClick(message: string): void {
         console.log('Clicked message with id:', message.id);
+        this.setProps({ chooseChat: true });
     }
 
     mapMessageToComponent(
@@ -136,9 +140,14 @@ class Messenger extends Block {
 
                     </div>
                 </div>
-                <div class="messenger__right-choose">
-                    <p>Выберите чат, чтобы отправить сообщение</p>
-                </div>
+
+                {{#if chooseChat}}
+                    {{{ ActiveMessage }}}
+                {{else}}
+                    <div class="messenger__right-choose">
+                        <p>Выберите чат, чтобы отправить сообщение</p>
+                    </div>
+                {{/if}}
             </div>
         `;
     }

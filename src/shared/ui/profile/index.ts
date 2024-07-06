@@ -1,3 +1,3 @@
-export { ProfileImage } from './image';
+export { ProfileImage, ProfileAvatar } from './image';
 export { ProfileInfoItem } from './body';
-export { ProfileAction } from './action';
+export { ProfileAction, ProfileSettings } from './action';

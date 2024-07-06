@@ -20,6 +20,7 @@ class Message extends Block {
     constructor(props) {
         super({
             ...props,
+            active: props.activeId === props.id,
             events: {
                 click: () => {
                     const { id, name, message } = props;
@@ -28,7 +29,6 @@ class Message extends Block {
                 },
             },
         });
-        console.log(props);
     }
 
     render(): string {

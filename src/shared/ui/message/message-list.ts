@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import Block from '../../utils/block';
 
 class MessageList extends Block {
