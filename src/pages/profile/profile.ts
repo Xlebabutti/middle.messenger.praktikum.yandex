@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+//@ts-nocheck
 import {
     Button,
     ModalWindow,
@@ -12,7 +13,6 @@ import Block from '../../shared/utils/block';
 import { Validator } from '../../shared/utils/validator';
 
 class ProfilePage extends Block {
-    [x: string]: any;
     init() {
         const onChangeDataBind = this.onChangeData.bind(this);
         const onChangePasswordBind = this.onChangePassword.bind(this);

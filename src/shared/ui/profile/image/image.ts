@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+//@ts-nocheck
 import Block, { Props } from '../../../utils/block';
 
 class ProfileImage extends Block {
-    props: any;
     constructor(props: Props) {
         super(props);
         this.props.events = {

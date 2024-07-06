@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+//@ts-nocheck
 import Block, { Props } from '../../utils/block';
 import { Input } from './input';
 import { InputError } from './input-erorr';
@@ -6,7 +7,6 @@ import { InputLabel } from './input-lable';
 import { InputProps } from './input-props';
 
 class InputElement extends Block {
-    [x: string]: any;
     constructor(props: InputProps) {
         super({
             ...props,

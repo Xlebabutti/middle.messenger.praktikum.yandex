@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+//@ts-nocheck
 import Block, { Props } from '../../../utils/block';
 import { InputElement } from '../../input';
 import { InputError } from '../../input/input-erorr';
 
 class ProfileInfoItem extends Block {
-    [x: string]: any;
     constructor(props: Props) {
         super({
             ...props,

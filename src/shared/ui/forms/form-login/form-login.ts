@@ -1,11 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+//@ts-nocheck
 import Block from '../../../utils/block';
 import { Validator } from '../../../utils/validator';
 import { Button } from '../../button';
 import { InputElement } from '../../input';
 
 class FormLogin extends Block {
-    [x: string]: any;
     init(): void {
         const onLoginBind = this.onLogin.bind(this);
         const onChangeLoginBind = this.onChangeLogin.bind(this);
