@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () =>
 
 document.addEventListener('click', (event) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-expect-error
     const page = event.target.getAttribute('page');
     if (page) {
         navigateOnClient(pages, page);
