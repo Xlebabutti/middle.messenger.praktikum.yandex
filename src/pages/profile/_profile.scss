@@ -12,7 +12,7 @@ $color-danger: red;
 
     &__header {
         &-img {
-            width: 8.125em;
+            width: $profile-header-img-size;
             height: 8.125em;
             border-radius: 50%;
             background-color: $color-secondary;

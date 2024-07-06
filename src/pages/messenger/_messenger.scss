@@ -104,7 +104,7 @@ $color-danger: red;
                 width: 100%;
                 height: 32px;
                 border-radius: 5px;
-                background-color: #efefef;
+                background-color: $messenger-footer-message-background-color;
                 padding: 0 2.7em;
 
                 &:focus {
@@ -208,7 +208,7 @@ $color-danger: red;
                 text-align: -webkit-right;
 
                 p {
-                    background-color: #e4edfd;
+                    background-color: $messenger-body-out-background-color;
                 }
             }
         }
@@ -230,7 +230,7 @@ $color-danger: red;
                 outline: 0;
                 border: 0;
                 padding: 0 1em;
-                background-color: #efefef;
+                background-color: $messenger-footer-message-background-color;
                 border-radius: 8px;
             }
 
@@ -240,7 +240,7 @@ $color-danger: red;
 
             &-file {
                 margin-right: 1em;
-                background-color: white;
+                background-color: $messenger-item-info-right-count-color;
             }
 
             button {
