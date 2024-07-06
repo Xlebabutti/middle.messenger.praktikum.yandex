@@ -1,13 +1,8 @@
-$modal-background-color: rgba(0 0 0 / 50%);
-$modal-content-background-color: #fefefe;
-$modal-content-border-color: #888;
-$modal-content-border-radius: 12px;
-$modal-content-padding: 20px;
-$modal-content-max-width: 340px;
-$modal-content-input-color: #8d8d8d;
-$modal-content-input-label-color: #3369f3;
-$modal-content-input-label-text-decoration-offset: 5px;
-$modal-content-error-color: #ff2f2f;
+$color-primary: #3369f3;
+$color-secondary: #1a1a1a;
+$color-background: #fefefe;
+$color-border: #8d8d8d;
+$color-error: #ff2f2f;
 
 .modal {
     position: fixed;
@@ -23,17 +18,24 @@ $modal-content-error-color: #ff2f2f;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        background-color: $modal-content-background-color;
+        background-color: $color-background;
         margin: 15% auto;
-        padding: $modal-content-padding;
-        border: 1px solid $modal-content-border-color;
+        padding: 20px;
+        border: 1px solid $color-border;
         width: 80%;
         height: 257px;
         max-width: $modal-content-max-width;
         border-radius: $modal-content-border-radius;
 
-        & > div.input {
-            color: $modal-content-input-color;
+        & p {
+            color: $color-border;
+        }
+
+        & > div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
             input {
                 border: 0;
@@ -42,7 +44,7 @@ $modal-content-error-color: #ff2f2f;
 
             label {
                 font-size: 1em;
-                color: $modal-content-input-label-color;
+                color: $color-primary;
                 display: inline;
                 position: relative;
                 cursor: pointer;
@@ -54,5 +56,5 @@ $modal-content-error-color: #ff2f2f;
 }
 
 .error {
-    color: $modal-content-error-color;
+    color: $color-error;
 }
