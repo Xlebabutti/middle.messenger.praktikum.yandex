@@ -32,13 +32,9 @@ export class Block {
 
     private _eventbus;
 
-    constructor(propsWithChildren = {}) {
-        const eventBus = new EventBus<TEvents>();
+    constructor(propsWithChildren: Props) {
+        const eventBus = new EventBus();
 
-        // this._meta = {
-        //   tagName,
-        //   props
-        // };
         const { props, children } =
             this._getChildrenAndProps(propsWithChildren);
         this.props = this._makePropsProxy({ ...props });
@@ -131,6 +127,7 @@ export class Block {
     }
 
     _getChildrenAndProps(propsAndChildren) {
+        if (!propsAndChildren) return { children: {}, props: {} };
         const children = {};
         const props = {};
 
