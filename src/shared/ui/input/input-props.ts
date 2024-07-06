@@ -1,6 +1,7 @@
 import { InputElement } from './input-element';
 
 export interface InputProps {
+    onChange?: () => void;
     onBlur?: () => void;
     type?: string;
     name?: string;

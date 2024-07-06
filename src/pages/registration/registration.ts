@@ -1,8 +1,8 @@
 import { FormRegistration } from '../../shared/ui';
-import Block from '../../shared/utils/block';
+import Block, { Props } from '../../shared/utils/block';
 
 class RegistrationPage extends Block {
-    constructor(props: unknown) {
+    constructor(props: Props) {
         super({
             ...props,
             Form: new FormRegistration({
@@ -13,7 +13,7 @@ class RegistrationPage extends Block {
         });
     }
 
-    protected render(): string {
+    render(): string {
         return `
             <div class="card">
                 <section class="section__login">

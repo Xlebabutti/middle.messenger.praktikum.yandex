@@ -1,8 +1,8 @@
 import { FormLogin } from '../../shared/ui';
-import Block from '../../shared/utils/block';
+import Block, { Props } from '../../shared/utils/block';
 
 class LoginPage extends Block {
-    constructor(props: unknown) {
+    constructor(props: Props) {
         super({
             ...props,
             Form: new FormLogin({
@@ -14,7 +14,7 @@ class LoginPage extends Block {
         });
     }
 
-    protected render(): string {
+    render(): string {
         return `
             <div class="card">
                 <section class="section__login">

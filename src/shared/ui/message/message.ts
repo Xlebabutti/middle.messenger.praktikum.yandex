@@ -23,8 +23,12 @@ class Message extends Block {
             events: {
                 click: () => {
                     const { id, name, message } = props;
-                    const mess: MessageData = { id, name, message };
-                    props?.click(mess);
+                    const mess: MessageData = {
+                        id: id as string,
+                        name: name as string,
+                        message: message as string,
+                    };
+                    (props.click as (message: MessageData) => void)?.(mess);
                 },
             },
         });

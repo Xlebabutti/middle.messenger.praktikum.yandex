@@ -21,7 +21,7 @@ function queryStringify(data: Record<string, unknown>) {
     const keys = Object.keys(data);
     return keys.reduce(
         (result, key, index) =>
-            `${result}${key}=${encodeURIComponent(data[key])}${index < keys.length - 1 ? '&' : ''}`,
+            `${result}${key}=${encodeURIComponent(data[key] as string)}${index < keys.length - 1 ? '&' : ''}`,
         '',
     );
 }

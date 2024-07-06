@@ -1,4 +1,5 @@
-import Block from '../../utils/block';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import Block, { Props } from '../../utils/block';
 import { Validator } from '../../utils/validator';
 import { ButtonImg } from '../button';
 import { InputElement } from '../input';
@@ -6,7 +7,8 @@ import { InputElement } from '../input';
 import { ProfileAvatar, ProfileSettings } from '../profile';
 
 class MessageActive extends Block {
-    constructor(props) {
+    [x: string]: any;
+    constructor(props: Props) {
         super({
             ...props,
             events: {

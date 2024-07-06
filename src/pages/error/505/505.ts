@@ -1,7 +1,7 @@
 import Block from '../../../shared/utils/block';
 
 class ErrorPage505 extends Block {
-    protected render() {
+    render() {
         return `
         <div class="container">
             <h1>505</h1>

@@ -1,10 +1,12 @@
-import Block from '../../utils/block';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import Block, { Props } from '../../utils/block';
 import { Input } from './input';
 import { InputError } from './input-erorr';
 import { InputLabel } from './input-lable';
 import { InputProps } from './input-props';
 
 class InputElement extends Block {
+    [x: string]: any;
     constructor(props: InputProps) {
         super({
             ...props,
@@ -22,8 +24,7 @@ class InputElement extends Block {
         });
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    componentDidUpdate(oldProps: any, newProps: any): boolean {
+    componentDidUpdate(oldProps: Props, newProps: Props): boolean {
         if (oldProps === newProps) return false;
         this.children.InputError.setProps(newProps);
         return true;

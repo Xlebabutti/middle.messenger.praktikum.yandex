@@ -7,6 +7,8 @@ import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 import EventBus from './event-bus';
 
+type TEvents = Values<typeof Block.EVENTS>;
+
 export type Props = {
     [key: string]: unknown;
     watch?: Record<string, (newValue?: unknown, oldValue?: unknown) => void>;
@@ -21,7 +23,7 @@ export default class Block {
         FLOW_RENDER: 'flow:render',
     };
 
-    _element = null;
+    private _element: HTMLElement | null = null;
     _meta = null;
     _id = nanoid(6);
 
@@ -35,7 +37,8 @@ export default class Block {
     private _eventbus;
 
     constructor(propsWithChildren = {}) {
-        const eventBus = new EventBus();
+        const eventBus = new EventBus<TEvents>();
+
         // this._meta = {
         //   tagName,
         //   props
@@ -96,8 +99,8 @@ export default class Block {
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
     _componentDidUpdate(oldProps, newProps) {
-        console.log('CDU');
         const response = this.componentDidUpdate(oldProps, newProps);
         if (!response) {
             return;
@@ -188,8 +191,6 @@ export default class Block {
     }
 
     _makePropsProxy(props) {
-        // Можно и так передать this
-        // Такой способ больше не применяется с приходом ES6+
         const self = this;
 
         return new Proxy(props, {
@@ -201,8 +202,6 @@ export default class Block {
                 const oldTarget = { ...target };
                 target[prop] = value;
 
-                // Запускаем обновление компоненты
-                // Плохой cloneDeep, в следующей итерации нужно заставлять добавлять cloneDeep им самим
                 self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
                 return true;
             },
@@ -213,7 +212,6 @@ export default class Block {
     }
 
     _createDocumentElement(tagName) {
-        // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
         return document.createElement(tagName);
     }
 

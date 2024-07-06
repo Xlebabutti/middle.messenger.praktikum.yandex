@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
     Button,
     ModalWindow,
@@ -11,6 +12,7 @@ import Block from '../../shared/utils/block';
 import { Validator } from '../../shared/utils/validator';
 
 class ProfilePage extends Block {
+    [x: string]: any;
     init() {
         const onChangeDataBind = this.onChangeData.bind(this);
         const onChangePasswordBind = this.onChangePassword.bind(this);
@@ -319,7 +321,9 @@ class ProfilePage extends Block {
     }
 
     onFileSelect(e: Event) {
-        const file = e.target.files[0];
+        const target = e.target as HTMLInputElement;
+        const file = target.files?.[0];
+
         if (file) {
             console.log(file);
             this.children.Modal.setProps({

@@ -1,21 +1,34 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 import { Message, MessageActive } from '../../shared/ui';
 import { MessageList } from '../../shared/ui/message/message-list';
-import Block from '../../shared/utils/block';
+import Block, { Props } from '../../shared/utils/block';
 
 interface ChatMessage {
+    map(
+        arg0: ({
+            id,
+            name,
+            message,
+            time,
+            count,
+        }: {
+            id: string;
+            name: string;
+            message: string;
+            time: string;
+            count: string | number;
+        }) => Message,
+    ): unknown;
     id: string;
     name: string;
     time: string;
     message: string;
     count: string;
 }
-
-interface MessengerProps {
-    listChat: ChatMessage[];
-}
-
 class Messenger extends Block {
-    constructor(props: MessengerProps) {
+    [x: string]: any;
+    constructor(props: Props) {
         super({
             ...props,
             listChat: [
@@ -64,15 +77,14 @@ class Messenger extends Block {
         };
     }
 
-    onMessageClick(message: string): void {
-        console.log('Clicked message with id:', message.id);
+    onMessageClick(): void {
         this.setProps({ chooseChat: true });
     }
 
     mapMessageToComponent(
         messageCard: ChatMessage,
         activeId: string | null,
-        hundler,
+        hundler: () => void,
     ) {
         return messageCard?.map(
             ({

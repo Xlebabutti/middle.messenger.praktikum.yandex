@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Block from '../../../utils/block';
 import { Validator } from '../../../utils/validator';
 import { Button } from '../../button';
 import { InputElement } from '../../input';
 
 class FormRegistration extends Block {
+    [x: string]: any;
     init(): void {
         const onRegistration = this.onRegistration.bind(this);
         const onChangeEmailBind = this.onChangeEmail.bind(this);

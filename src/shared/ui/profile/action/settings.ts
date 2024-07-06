@@ -1,7 +1,9 @@
-import Block from '../../../utils/block';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import Block, { Props } from '../../../utils/block';
 
 class ProfileSettings extends Block {
-    constructor(props: unknown) {
+    [x: string]: any;
+    constructor(props: Props) {
         super(props);
 
         this.props.events = {

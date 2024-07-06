@@ -1,15 +1,15 @@
 import { Selector } from '../../shared/ui/selector';
-import Block from '../../shared/utils/block';
+import Block, { Props } from '../../shared/utils/block';
 
 class Modules extends Block {
-    constructor(props) {
+    constructor(props: Props) {
         super({
             ...props,
             Selector1: new Selector({}),
         });
     }
 
-    protected render(): string {
+    render(): string {
         return `
             <div class='modules'>
                 <div class='card'>

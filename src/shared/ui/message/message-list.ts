@@ -11,7 +11,6 @@ class MessageList extends Block {
     }
 
     render(): string {
-        console.log(this.props.messages);
         return `
             <div>
                 {{{messages}}}

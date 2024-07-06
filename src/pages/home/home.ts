@@ -1,7 +1,7 @@
 import Block from '../../shared/utils/block';
 
 class HomePage extends Block {
-    protected render(): string {
+    render(): string {
         return `
             <nav class="nav">
                 <div class="container">
