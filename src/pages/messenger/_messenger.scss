@@ -4,6 +4,17 @@ $color-secondary-background: #f8f8f8;
 $color-primary: #3369f3;
 $color-secondary: #999;
 $color-danger: red;
+$messenger-background-color: #fbfbfb;
+$messenger-border-color: #eaeaea;
+$messenger-search-background-color: #efefef;
+$messenger-search-placeholder-color: #999;
+$messenger-item-border-color: #eaeaea;
+$messenger-item-info-right-time-color: #999;
+$messenger-item-info-right-count-background-color: red;
+$messenger-item-info-right-count-color: white;
+$messenger-body-in-background-color: #f8f8f8;
+$messenger-body-out-background-color: #e4edfd;
+$messenger-footer-message-background-color: #efefef;
 
 .messenger {
     display: flex;
