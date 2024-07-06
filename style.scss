@@ -6,6 +6,13 @@ $color-shadow-strong: rgba(0, 0, 0, 0.24);
 $color-highlight: #f7df1e;
 
 :root {
+    --color-primary: #3369f3;
+    --color-primary-hover: #3369f3a9;
+    --color-background: #1a1a1a;
+    --color-shadow: rgba(0, 0, 0, 0.14);
+    --color-shadow-strong: rgba(0, 0, 0, 0.24);
+    --color-highlight: #f7df1e;
+
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
@@ -17,12 +24,12 @@ $color-highlight: #f7df1e;
 
 a {
     font-weight: 500;
-    color: $color-primary;
-    text-decoration: inherit;
-}
+    color: var(--color-primary);
+    text-decoration: none;
 
-a:hover {
-    color: $color-primary-hover;
+    &:hover {
+        color: var(--color-primary-hover);
+    }
 }
 
 input {
@@ -62,7 +69,7 @@ h1 {
     width: 340px;
     display: inline-block;
     border-radius: 12px;
-    box-shadow: 0 0 6px 0 $color-shadow;
+    box-shadow: 0 0 6px 0 var(--color-shadow);
 }
 
 button {
@@ -72,7 +79,7 @@ button {
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: $color-background;
+    background-color: var(--color-background);
     cursor: pointer;
     transition: border-color 0.25s;
     width: 280px;
