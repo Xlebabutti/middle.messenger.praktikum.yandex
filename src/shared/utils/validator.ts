@@ -6,11 +6,11 @@ interface ValidatorResult {
 
 interface FormProps {
     email?: string;
-    login?: string;
+    loginValue?: string;
     firstName?: string;
     secondName?: string;
     phone?: string;
-    password?: string;
+    passwordValue?: string;
     newpassword?: string;
 }
 
@@ -135,11 +135,11 @@ class Validator {
 
     static validateFormLogin(props: FormProps) {
         const results = {
-            login: props.login
-                ? Validator.validateLogin(props.login)
+            login: props.loginValue
+                ? Validator.validateLogin(props.loginValue)
                 : { errorText: 'Логин не должен быть пустым.', isValid: false },
-            password: props.password
-                ? Validator.validatePassword(props.password)
+            password: props.passwordValue
+                ? Validator.validatePassword(props.passwordValue)
                 : {
                       errorText: 'Пароль не должен быть пустым.',
                       isValid: false,
@@ -158,8 +158,8 @@ class Validator {
             email: props.email
                 ? Validator.validateEmail(props.email)
                 : { errorText: 'Email не должен быть пустым.', isValid: false },
-            login: props.login
-                ? Validator.validateLogin(props.login)
+            login: props.loginValue
+                ? Validator.validateLogin(props.loginValue)
                 : { errorText: 'Логин не должен быть пустым.', isValid: false },
             firstName: props.firstName
                 ? Validator.validateName(props.firstName)
@@ -176,8 +176,8 @@ class Validator {
                       errorText: 'Телефон не должен быть пустым.',
                       isValid: false,
                   },
-            password: props.password
-                ? Validator.validatePassword(props.password)
+            password: props.passwordValue
+                ? Validator.validatePassword(props.passwordValue)
                 : {
                       errorText: 'Пароль не должен быть пустым.',
                       isValid: false,

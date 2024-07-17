@@ -16,7 +16,7 @@ type OptionsWithoutMethod = Omit<Options, 'method'>;
 export class HTTPTransport {
     private apiUrl: string = '';
     constructor(apiPath: string) {
-        this.apiUrl = `local${apiPath}`;
+        this.apiUrl = `https://ya-praktikum.tech/api/v2${apiPath}`;
     }
 
     get<TResponse>(

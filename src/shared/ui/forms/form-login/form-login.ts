@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-nocheck
 import { Block } from '../../../utils/block';
 import { Validator } from '../../../utils/validator';
 import { Button } from '../../button';
 import { InputElement } from '../../input';
+import { login } from '../../../../entities/user/queries';
 
 class FormLogin extends Block {
     init(): void {
@@ -49,7 +51,7 @@ class FormLogin extends Block {
             errorText: validationResult.errorText,
         });
 
-        this.setProps({ login: inputValue });
+        this.setProps({ loginValue: inputValue });
     }
 
     onChangePassword(e: Event) {
@@ -60,7 +62,7 @@ class FormLogin extends Block {
             errorText: validationResult.errorText,
         });
 
-        this.setProps({ password: inputValue });
+        this.setProps({ passwordValue: inputValue });
     }
 
     onLogin(e: Event) {
@@ -69,8 +71,6 @@ class FormLogin extends Block {
         const { results, errors } = Validator.validateFormLogin(this.props);
 
         if (errors.length > 0) {
-            console.error('Validation errors:', errors);
-
             ['login', 'password'].forEach((key) => {
                 const inputKey = `Input${key.charAt(0).toUpperCase() + key.slice(1)}`;
                 const inputComponent = this.children[inputKey];
@@ -86,11 +86,9 @@ class FormLogin extends Block {
 
             return;
         }
-        const { login, password } = this.props;
-        console.log({
-            login,
-            password,
-        });
+        const { loginValue, passwordValue } = this.props;
+        const res = { loginValue, passwordValue };
+        login(res);
     }
 
     render(): string {

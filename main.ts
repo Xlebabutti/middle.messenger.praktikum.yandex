@@ -1,16 +1,28 @@
-import './style.scss';
+import { AppState } from './src/features/auth/type';
+import * as Pages from './src/pages';
 import Router from './src/shared/utils/router';
 import { Store } from './src/shared/utils/store';
-import * as Pages from './src/pages';
+import './style.scss';
 
 const router = new Router('#app');
+
+declare global {
+    interface Window {
+        store: Store<AppState>;
+    }
+
+    type Nullable<T> = T | null;
+}
+
 window.router = router;
 
-window.store = new Store({
+const inintStore = new Store({
     isLoading: false,
     loginError: null,
     user: null,
 });
+
+window.store = inintStore;
 
 router
     .use('/', Pages.LoginPage)

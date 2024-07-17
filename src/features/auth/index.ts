@@ -18,9 +18,9 @@ const delay = (showError: boolean) =>
         }
     });
 
-export default class AuthApi {
+export default class Auth {
     async create(data: CreateUser): Promise<SignUpResponse> {
-        return authApi.POST<SignUpResponse>('/signup', { data });
+        return authApi.post<SignUpResponse>('/signup', { data });
     }
 
     async login(data: LoginRequestData): Promise<void | APIError> {
@@ -28,10 +28,10 @@ export default class AuthApi {
     }
 
     async me(): Promise<UserDTO | APIError> {
-        return authApi.GET('/user');
+        return authApi.get('/user');
     }
 
     async logout(): Promise<void | APIError> {
-        return authApi.POST('/logout');
+        return authApi.get('/logout');
     }
 }
