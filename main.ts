@@ -1,28 +1,22 @@
-import * as Pages from './src/pages';
-import { navigateOnClient } from './src/shared/utils/navigate-on-client.ts';
 import './style.scss';
+import Router from './src/shared/utils/router';
+import { Store } from './src/shared/utils/store';
+import * as Pages from './src/pages';
 
-const pages = {
-    Login: [Pages.LoginPage],
-    Registration: [Pages.RegistrationPage],
-    Profile: [Pages.ProfilePage],
-    Messenger: [Pages.Messenger],
-    Error404: [Pages.ErrorPage404],
-    Error505: [Pages.ErrorPage505],
-    Home: [Pages.HomePage],
-};
+const router = new Router('#app');
+window.router = router;
 
-document.addEventListener('DOMContentLoaded', () =>
-    navigateOnClient(pages, 'Home'),
-);
-
-document.addEventListener('click', (event) => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    const page = event.target.getAttribute('page');
-    if (page) {
-        navigateOnClient(pages, page);
-
-        event.preventDefault();
-        event.stopImmediatePropagation();
-    }
+window.store = new Store({
+    isLoading: false,
+    loginError: null,
+    user: null,
 });
+
+router
+    .use('/', Pages.LoginPage)
+    .use('/registration', Pages.RegistrationPage)
+    .use('/messenger', Pages.Messenger)
+    .use('/505', Pages.ErrorPage505)
+    .use('settings', Pages.ProfilePage)
+    .use('*', Pages.ErrorPage404)
+    .start();

@@ -4,10 +4,8 @@ export function navigateOnClient(
     page: string | number,
 ) {
     const app = document.getElementById('app');
-    if (!app) {
-        console.error('App element not found');
-        return;
-    }
+    if (!app) return;
+
     const [source, context] = pages[page];
     if (source instanceof Object) {
         const page = new source(context);
