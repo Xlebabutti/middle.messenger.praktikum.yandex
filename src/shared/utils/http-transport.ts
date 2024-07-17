@@ -1,103 +1,63 @@
-type Options = {
-    data?: Record<string, unknown>;
-    headers?: Record<string, string>;
-    timeout?: number;
-    method: string;
-};
-
-type HTTPMethod = (url: string, options?: Options) => Promise<XMLHttpRequest>;
-
-const METHODS = {
-    GET: 'GET',
-    POST: 'POST',
-    PUT: 'PUT',
-    DELETE: 'DELETE',
-};
-
-function queryStringify(data: Record<string, unknown>) {
-    if (typeof data !== 'object') {
-        throw new Error('Data must be object');
-    }
-    const keys = Object.keys(data);
-    return keys.reduce(
-        (result, key, index) =>
-            `${result}${key}=${encodeURIComponent(data[key] as string)}${index < keys.length - 1 ? '&' : ''}`,
-        '',
-    );
+/* eslint-disable @typescript-eslint/no-explicit-any */
+enum METHODS {
+    GET = 'GET',
+    POST = 'POST',
+    PUT = 'PUT',
+    DELETE = 'DELETE',
 }
 
+type Options = {
+    method: METHODS;
+    data?: any;
+};
+
+type OptionsWithoutMethod = Omit<Options, 'method'>;
+
 export class HTTPTransport {
-    GET: HTTPMethod = (url, options) => {
-        let str = url;
-        if (options?.data) {
-            str += queryStringify(options.data);
-        }
-        return this.request(
-            str,
-            { ...options, method: METHODS.GET },
-            options?.timeout,
-        );
-    };
+    private apiUrl: string = '';
+    constructor(apiPath: string) {
+        this.apiUrl = `local${apiPath}`;
+    }
 
-    POST: HTTPMethod = (url, options) =>
-        this.request(
-            url,
-            { ...options, method: METHODS.POST },
-            options?.timeout,
-        );
-
-    PUT: HTTPMethod = (url, options) =>
-        this.request(
-            url,
-            { ...options, method: METHODS.PUT },
-            options?.timeout,
-        );
-
-    DELETE: HTTPMethod = (url, options) =>
-        this.request(
-            url,
-            { ...options, method: METHODS.DELETE },
-            options?.timeout,
-        );
-
-    request = (url: string, options: Options, timeout = 5000) => {
-        const { method, data, headers } = options;
-
-        return new Promise<XMLHttpRequest>((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-
-            xhr.open(method, url);
-
-            Object.entries(headers ?? {}).forEach(([key, value]) => {
-                xhr.setRequestHeader(key, value);
-            });
-
-            xhr.onload = function () {
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    resolve(xhr);
-                } else {
-                    reject(
-                        new Error(`Request failed with status ${xhr.status}`),
-                    );
-                }
-            };
-
-            xhr.onabort = reject;
-            xhr.onerror = reject;
-            xhr.timeout = timeout;
-            xhr.ontimeout = function () {
-                reject(new Error('Request timed out'));
-            };
-
-            if (method === 'GET' || !data) {
-                xhr.send();
-            } else {
-                xhr.setRequestHeader(
-                    'Content-Type',
-                    'application/json;charset=UTF-8',
-                );
-                xhr.send(JSON.stringify(data));
-            }
+    get<TResponse>(
+        url: string,
+        options: OptionsWithoutMethod = {},
+    ): Promise<TResponse> {
+        return this.request<TResponse>(`${this.apiUrl}${url}`, {
+            ...options,
+            method: METHODS.GET,
         });
-    };
+    }
+
+    post<TResponse>(
+        url: string,
+        options: OptionsWithoutMethod = {},
+    ): Promise<TResponse> {
+        return this.request<TResponse>(`${this.apiUrl}${url}`, {
+            ...options,
+            method: METHODS.POST,
+        });
+    }
+
+    async request<TResponse>(
+        url: string,
+        options: Options = { method: METHODS.GET },
+    ): Promise<TResponse> {
+        const { method, data } = options;
+
+        const response = await fetch(url, {
+            method,
+            credentials: 'include',
+            mode: 'cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: data ? JSON.stringify(data) : null,
+        });
+
+        const isJson = response.headers
+            .get('content-type')
+            ?.includes('application/json');
+        const resultData = (await isJson) ? response.json() : null;
+
+        return resultData as unknown as TResponse;
+    }
 }

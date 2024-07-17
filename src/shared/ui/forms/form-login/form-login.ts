@@ -111,7 +111,7 @@ class FormLogin extends Block {
 
                 <div class='form__footer'>
                     <span class='form__footer-title'>{{formFooterTitle}}</span><a
-                        href=''
+                        href='/sign-up'
                         class='form__footer-link'
                     >{{formFooterLink}}</a>
                 </div>

@@ -14,7 +14,7 @@ window.store = new Store({
 
 router
     .use('/', Pages.LoginPage)
-    .use('/registration', Pages.RegistrationPage)
+    .use('/sign-up', Pages.RegistrationPage)
     .use('/messenger', Pages.Messenger)
     .use('/505', Pages.ErrorPage505)
     .use('settings', Pages.ProfilePage)
