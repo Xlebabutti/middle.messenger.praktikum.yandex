@@ -1,8 +1,8 @@
-$profile-header-img-size: 8.125em;
-$profile-header-img-background-color: #efefef;
-$profile-body-info-color: #999;
-$profile-footer-actions-border-color: #eaeaea;
-$profile-footer-actions-last-item-color: red;
+$color-primary: #3369f3;
+$color-secondary: #efefef;
+$color-border: #eaeaea;
+$color-text: #999;
+$color-danger: red;
 
 .profile {
     display: flex;
@@ -12,10 +12,10 @@ $profile-footer-actions-last-item-color: red;
 
     &__header {
         &-img {
-            width: $profile-header-img-size;
+            width: 100%;
             height: 8.125em;
             border-radius: 50%;
-            background-color: $profile-header-img-background-color;
+            background-color: $color-secondary;
             object-fit: cover;
             display: flex;
             align-items: center;
@@ -25,6 +25,7 @@ $profile-footer-actions-last-item-color: red;
         &-title {
             font-size: 1.5em;
             margin-bottom: 0;
+            color: $color-primary;
         }
     }
 
@@ -37,9 +38,19 @@ $profile-footer-actions-last-item-color: red;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                position: relative;
                 padding: 0.8em;
                 font-weight: 500;
-                border-bottom: 1px solid $profile-footer-actions-border-color;
+                border-bottom: 1px solid $color-border;
+
+                .error {
+                    color: red;
+                    font-size: 0.5em;
+                    margin-top: 4em;
+                    margin-right: 1.7em;
+                    position: absolute;
+                    right: 0;
+                }
             }
 
             &-list:last-child {
@@ -47,7 +58,7 @@ $profile-footer-actions-last-item-color: red;
             }
 
             &-content {
-                color: $profile-body-info-color;
+                color: $color-text;
                 border: 0;
                 font-size: 1em;
                 text-align: right;
@@ -67,14 +78,14 @@ $profile-footer-actions-last-item-color: red;
 
         &-item {
             padding: 0.8em;
-            border-bottom: 1px solid $profile-footer-actions-border-color;
+            border-bottom: 1px solid $color-border;
         }
 
         &-item:last-child {
             border-bottom: 0;
 
             a {
-                color: $profile-footer-actions-last-item-color;
+                color: $color-danger;
             }
         }
 

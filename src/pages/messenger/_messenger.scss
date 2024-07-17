@@ -1,3 +1,9 @@
+$color-border: #eaeaea;
+$color-background: #fbfbfb;
+$color-secondary-background: #f8f8f8;
+$color-primary: #3369f3;
+$color-secondary: #999;
+$color-danger: red;
 $messenger-background-color: #fbfbfb;
 $messenger-border-color: #eaeaea;
 $messenger-search-background-color: #efefef;
@@ -18,13 +24,13 @@ $messenger-footer-message-background-color: #efefef;
 
     &__left {
         flex: 1;
-        border-right: 1px solid $messenger-border-color;
-        padding: 1em;
-        background-color: $messenger-background-color;
+        border-right: 1px solid $color-border;
+        background-color: $color-background;
 
         &-header {
+            padding: 1em;
             height: 102px;
-            border-bottom: 1px solid $messenger-item-border-color;
+            border-bottom: 1px solid $color-border;
             display: flex;
             flex-direction: column;
             justify-content: space-around;
@@ -32,24 +38,33 @@ $messenger-footer-message-background-color: #efefef;
 
         &-profile-link {
             text-decoration: none;
-            color: $messenger-search-placeholder-color;
+            color: $color-secondary;
         }
 
         &-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 1em;
-            border-bottom: 1px solid $messenger-item-border-color;
-            padding: 0.8em 0;
+            border-bottom: 1px solid $color-border;
+            padding: 0.8em 1em;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgb(231 146 17 / 19.9%);
+            }
 
             &-title {
+                text-align: left;
                 font-size: 1em;
             }
 
             &-text {
-                color: $messenger-search-placeholder-color;
+                color: $color-secondary;
                 font-size: 0.9em;
+            }
+
+            &.active {
+                background-color: rgb(231 146 17 / 19.9%);
             }
 
             &-info {
@@ -59,7 +74,7 @@ $messenger-footer-message-background-color: #efefef;
                     justify-content: space-between;
 
                     &-time {
-                        color: $messenger-item-info-right-time-color;
+                        color: $color-secondary;
                         font-size: 0.5em;
                     }
 
@@ -67,8 +82,8 @@ $messenger-footer-message-background-color: #efefef;
                         border-radius: 50%;
                         width: 20px;
                         height: 20px;
-                        background-color: $messenger-item-info-right-count-background-color;
-                        color: $messenger-item-info-right-count-color;
+                        background-color: $color-danger;
+                        color: white;
                         font-size: 0.8em;
                         display: flex;
                         align-items: center;
@@ -154,7 +169,7 @@ $messenger-footer-message-background-color: #efefef;
             align-items: center;
             justify-content: space-between;
             height: 64px;
-            border-bottom: 1px solid $messenger-item-border-color;
+            border-bottom: 1px solid $color-border;
         }
 
         &-avatar {
@@ -187,7 +202,7 @@ $messenger-footer-message-background-color: #efefef;
                     padding: 0.5em;
                     border-radius: 8px;
                     width: max-content;
-                    background-color: $messenger-body-in-background-color;
+                    background-color: $color-secondary-background;
                 }
             }
 
@@ -211,10 +226,14 @@ $messenger-footer-message-background-color: #efefef;
 
         &-footer {
             height: 64px;
-            border-top: 1px solid $messenger-item-border-color;
+            border-top: 1px solid $color-border;
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+            & div {
+                width: 100%;
+            }
 
             &-messege {
                 width: 100%;
