@@ -45,6 +45,7 @@ export type ChatDTO = {
 };
 
 export type AppState = {
-    error: string | null;
-    user: UserDTO | null;
+    user: null | UserDTO;
+    isLoading: boolean;
+    loginError: null | boolean;
 };

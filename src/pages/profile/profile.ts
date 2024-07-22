@@ -10,9 +10,19 @@ import {
 import { FormProfile } from '../../shared/ui/forms/form-profile';
 import { Sidebar } from '../../shared/ui/sidebar';
 import { Block } from '../../shared/utils/block';
+import { StoreEvents } from '../../shared/utils/store';
 import { Validator } from '../../shared/utils/validator';
 
 class ProfilePage extends Block {
+    constructor() {
+        super();
+        window.store.getState().user,
+            window.store.on(
+                StoreEvents.Updated,
+                this.onStoreUpdated.bind(this),
+            );
+    }
+
     init() {
         const onChangeDataBind = this.onChangeData.bind(this);
         const onChangePasswordBind = this.onChangePassword.bind(this);
@@ -32,7 +42,7 @@ class ProfilePage extends Block {
 
         const ProfileImg = new ProfileImage({
             profileImgSrc: '/not-avatar.svg',
-            profileTitle: 'Иван',
+            profileTitle: window.store.state.user?.login,
             onClick: onChangeAvatarBind,
         });
 
@@ -60,7 +70,7 @@ class ProfilePage extends Block {
                 name: 'email',
                 placeholder: 'Почта',
                 label: 'Почта',
-                value: 'pochta@yandex.ru',
+                value: this.props.user || '',
                 readonly: 'readonly',
                 readonlyStatus: true,
                 onBlur: onChangesEmailBind,
@@ -178,6 +188,10 @@ class ProfilePage extends Block {
             ProfileSidebar,
             Modal,
         };
+    }
+
+    onStoreUpdated(newState) {
+        this.setProps({ user: newState.user });
     }
 
     onChangeData() {
@@ -364,5 +378,5 @@ class ProfilePage extends Block {
         `;
     }
 }
-
-export { ProfilePage };
+const ProfilePageWithStore = ProfilePage;
+export { ProfilePageWithStore };

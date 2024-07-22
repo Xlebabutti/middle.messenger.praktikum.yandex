@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-nocheck
+import { registration } from '../../../../entities/user/queries';
 import { Block } from '../../../utils/block';
 import { Validator } from '../../../utils/validator';
 import { Button } from '../../button';
@@ -200,7 +201,7 @@ class FormRegistration extends Block {
         const { email, login, first_name, second_name, phone, password } =
             this.props;
 
-        console.log({
+        registration({
             email,
             login,
             first_name,
@@ -233,7 +234,7 @@ class FormRegistration extends Block {
 
                 <div class='form__footer'>
                     <span class='form__footer-title'>{{formFooterTitle}}</span><a
-                        href=''
+                        href='/sign-in'
                         class='form__footer-link'
                     >{{formFooterLink}}</a>
                 </div>

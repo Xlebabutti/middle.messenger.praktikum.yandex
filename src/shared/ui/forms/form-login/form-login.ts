@@ -5,7 +5,7 @@ import { Block } from '../../../utils/block';
 import { Validator } from '../../../utils/validator';
 import { Button } from '../../button';
 import { InputElement } from '../../input';
-import { login } from '../../../../entities/user/queries';
+import { login as Login } from '../../../../entities/user/queries';
 
 class FormLogin extends Block {
     init(): void {
@@ -51,7 +51,7 @@ class FormLogin extends Block {
             errorText: validationResult.errorText,
         });
 
-        this.setProps({ loginValue: inputValue });
+        this.setProps({ login: inputValue });
     }
 
     onChangePassword(e: Event) {
@@ -62,7 +62,7 @@ class FormLogin extends Block {
             errorText: validationResult.errorText,
         });
 
-        this.setProps({ passwordValue: inputValue });
+        this.setProps({ password: inputValue });
     }
 
     onLogin(e: Event) {
@@ -86,9 +86,9 @@ class FormLogin extends Block {
 
             return;
         }
-        const { loginValue, passwordValue } = this.props;
-        const res = { loginValue, passwordValue };
-        login(res);
+
+        const { login, password } = this.props;
+        Login({ login, password });
     }
 
     render(): string {

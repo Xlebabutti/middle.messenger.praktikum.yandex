@@ -7,10 +7,11 @@ export enum StoreEvents {
 
 export class Store<State extends Record<string, any>> extends EventBus {
     private state: State = {} as State;
+    static set: any;
+    static getState: any;
 
     constructor(defaultState: State) {
         super();
-
         this.state = defaultState;
         this.set(defaultState);
     }

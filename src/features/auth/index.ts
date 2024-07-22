@@ -9,22 +9,13 @@ import {
 
 const authApi = new HTTPTransport('/auth');
 
-const delay = (showError: boolean) =>
-    new Promise<void>((resolve, reject) => {
-        if (showError) {
-            setTimeout(() => reject(), 2000);
-        } else {
-            setTimeout(() => resolve(), 3000);
-        }
-    });
-
-export default class Auth {
+export default class AuthApi {
     async create(data: CreateUser): Promise<SignUpResponse> {
         return authApi.post<SignUpResponse>('/signup', { data });
     }
 
     async login(data: LoginRequestData): Promise<void | APIError> {
-        return await delay(data.login === 'httperror');
+        return authApi.post('/signin', { data });
     }
 
     async me(): Promise<UserDTO | APIError> {

@@ -8,7 +8,7 @@ class HomePage extends Block {
                     <ul class="nav__list">
 
                         <li class="nav__item">
-                            <a page="Login" class="nav__item-link">Логин главная</a>
+                            <a page="sign-in" class="nav__item-link">Логин главная</a>
                         </li>
                       
                         <p>---------------------------------------</p>

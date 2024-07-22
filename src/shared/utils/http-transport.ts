@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import constants from '../../features/auth/constants';
+
 enum METHODS {
     GET = 'GET',
     POST = 'POST',
@@ -9,14 +11,30 @@ enum METHODS {
 type Options = {
     method: METHODS;
     data?: any;
+    timeout?: number;
 };
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
 
+// function queryStringify(data: object): string {
+//     let query = '?';
+//     for (const [key, value] of Object.entries(data)) {
+//         query = query.concat(key, '=', value, '&');
+//     }
+//     query = query.slice(0, -1);
+//     return query;
+// }
+
+// function setHeaders(xhr: XMLHttpRequest, headers: object) {
+//     for (const [header, value] of Object.entries(headers)) {
+//         xhr.setRequestHeader(header, value);
+//     }
+// }
+
 export class HTTPTransport {
     private apiUrl: string = '';
     constructor(apiPath: string) {
-        this.apiUrl = `https://ya-praktikum.tech/api/v2${apiPath}`;
+        this.apiUrl = `${constants.HOST}${apiPath}`;
     }
 
     get<TResponse>(
@@ -52,6 +70,13 @@ export class HTTPTransport {
             headers: { 'Content-Type': 'application/json' },
             body: data ? JSON.stringify(data) : null,
         });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(
+                `HTTP error! status: ${response.status}, message: ${errorText}`,
+            );
+        }
 
         const isJson = response.headers
             .get('content-type')

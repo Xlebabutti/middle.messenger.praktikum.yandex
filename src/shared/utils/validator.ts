@@ -6,11 +6,11 @@ interface ValidatorResult {
 
 interface FormProps {
     email?: string;
-    loginValue?: string;
-    firstName?: string;
-    secondName?: string;
+    login?: string;
+    first_name?: string;
+    second_name?: string;
     phone?: string;
-    passwordValue?: string;
+    password?: string;
     newpassword?: string;
 }
 
@@ -135,11 +135,11 @@ class Validator {
 
     static validateFormLogin(props: FormProps) {
         const results = {
-            login: props.loginValue
-                ? Validator.validateLogin(props.loginValue)
+            login: props.login
+                ? Validator.validateLogin(props.login)
                 : { errorText: 'Логин не должен быть пустым.', isValid: false },
-            password: props.passwordValue
-                ? Validator.validatePassword(props.passwordValue)
+            password: props.password
+                ? Validator.validatePassword(props.password)
                 : {
                       errorText: 'Пароль не должен быть пустым.',
                       isValid: false,
@@ -158,14 +158,14 @@ class Validator {
             email: props.email
                 ? Validator.validateEmail(props.email)
                 : { errorText: 'Email не должен быть пустым.', isValid: false },
-            login: props.loginValue
-                ? Validator.validateLogin(props.loginValue)
+            login: props.login
+                ? Validator.validateLogin(props.login)
                 : { errorText: 'Логин не должен быть пустым.', isValid: false },
-            firstName: props.firstName
-                ? Validator.validateName(props.firstName)
+            firstName: props.first_name
+                ? Validator.validateName(props.first_name)
                 : { errorText: 'Имя не должно быть пустым.', isValid: false },
-            secondName: props.secondName
-                ? Validator.validateName(props.secondName)
+            secondName: props.second_name
+                ? Validator.validateName(props.second_name)
                 : {
                       errorText: 'Фамилия не должна быть пустой.',
                       isValid: false,
@@ -176,8 +176,8 @@ class Validator {
                       errorText: 'Телефон не должен быть пустым.',
                       isValid: false,
                   },
-            password: props.passwordValue
-                ? Validator.validatePassword(props.passwordValue)
+            password: props.password
+                ? Validator.validatePassword(props.password)
                 : {
                       errorText: 'Пароль не должен быть пустым.',
                       isValid: false,

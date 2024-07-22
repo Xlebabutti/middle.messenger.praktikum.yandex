@@ -12,6 +12,9 @@ export type Props = {
 };
 
 export class Block {
+    componentWillUnmount() {
+        throw new Error('Method not implemented.');
+    }
     static EVENTS = {
         INIT: 'init',
         FLOW_CDM: 'flow:component-did-mount',

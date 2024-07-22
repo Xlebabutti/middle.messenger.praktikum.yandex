@@ -118,7 +118,7 @@ class Messenger extends Block {
                 <div class="messenger__left">
                     <div class="messenger__left-header">
                         <div class="messenger__left-profile">
-                            <a href="#" class="messenger__left-profile-link">Профиль</a>
+                            <a href="/settings" class="messenger__left-profile-link">Профиль</a>
                         </div>
                         <div class="messenger__left-search">
                             <div class="messenger__left-search-icon">
