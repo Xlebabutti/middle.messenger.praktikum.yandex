@@ -7,7 +7,7 @@ async function app() {
     initStore();
     initRouter();
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
         const root = document.querySelector('#app');
         if (root !== null) {
             return '';
@@ -17,14 +17,17 @@ async function app() {
     const authAPI = new AuthApi();
 
     try {
-        const me = (await authAPI.me()) as any;
         if (window.location.pathname === '/sign-up') {
             router.go('/sign-up');
             return;
         }
+
+        const me = (await authAPI.me()) as any;
+
         if (me.reason) {
             router.go('/');
         }
+
         window.store.set({ user: me });
     } catch (error) {
         router.go('/');

@@ -10,6 +10,7 @@ class FormProfile extends Block {
     render(): string {
         return `
             <form action='#' class='form__{{formType}}'>
+             <h1>{{user.first_name}}</h1>
             {{#if changePassword}}
                     <ul class='profile__body-info'>
                         {{{ InfoEmail }}}

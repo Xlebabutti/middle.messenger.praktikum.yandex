@@ -32,9 +32,10 @@ export const login = async (data: LoginRequestData) => {
 
 export const logout = async () => {
     try {
-        await authApi.logout();
         window.store.set({ user: null });
-        window.router.go('/sign-up');
+        window.router.go('/sign-in');
+        await authApi.logout();
+        console.log('out');
     } catch (error) {
         console.log(error);
     }
@@ -43,12 +44,23 @@ export const logout = async () => {
 export const registration = async (data: CreateUser) => {
     try {
         const response = await authApi.create(data);
-        if (!response.reason) {
-            window.router.go('/messenger');
-            const user = await authApi.me();
-            window.store.set({ user: user });
-        }
+        const errorApi = checkError(response);
+
+        if (errorApi) throw Error(response.reason);
+
+        window.router.go('/sign-in');
+        const user = await authApi.me();
+        window.store.set({ user: user });
     } catch (error) {
         console.error(error);
     }
+};
+
+export const getUser = async () => {
+    const user = await authApi.me();
+    if (!user) {
+        throw Error('error getUser');
+    }
+
+    window.store.set({ user: user });
 };

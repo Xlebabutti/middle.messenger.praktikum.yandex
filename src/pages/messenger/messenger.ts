@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-nocheck
-import { Message, MessageActive } from '../../shared/ui';
+import { Button, Message, MessageActive } from '../../shared/ui';
 import { MessageList } from '../../shared/ui/message/message-list';
 import { Block, Props } from '../../shared/utils/block';
 
@@ -59,6 +59,7 @@ class Messenger extends Block {
 
     init(): void {
         const onMessageClickBind = this.onMessageClick.bind(this);
+        const onProfileClickBind = this.onProfileClick.bind(this);
 
         const ListMessage = new MessageList({
             messages:
@@ -71,14 +72,23 @@ class Messenger extends Block {
 
         const ActiveMessage = new MessageActive({});
 
+        const ButtonProfile = new Button({
+            onClick: onProfileClickBind,
+        });
+
         this.children = {
             ListMessage,
             ActiveMessage,
+            ButtonProfile,
         };
     }
 
     onMessageClick(): void {
         this.setProps({ chooseChat: true });
+    }
+
+    onProfileClick() {
+        window.router.go('/settings');
     }
 
     mapMessageToComponent(
@@ -118,8 +128,8 @@ class Messenger extends Block {
                 <div class="messenger__left">
                     <div class="messenger__left-header">
                         <div class="messenger__left-profile">
-                            <a href="/settings" class="messenger__left-profile-link">Профиль</a>
-                        </div>
+                            <a class="messenger__left-profile-link" href="/settings">Профиль</a>
+                        </div
                         <div class="messenger__left-search">
                             <div class="messenger__left-search-icon">
                                 <svg

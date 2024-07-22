@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-nocheck
+
+// import { getUser } from '../../entities/user/queries';
+
+import { logout } from '../../entities/user/queries';
 import {
     Button,
     ModalWindow,
@@ -10,17 +14,17 @@ import {
 import { FormProfile } from '../../shared/ui/forms/form-profile';
 import { Sidebar } from '../../shared/ui/sidebar';
 import { Block } from '../../shared/utils/block';
+import { connect } from '../../shared/utils/connect';
 import { StoreEvents } from '../../shared/utils/store';
 import { Validator } from '../../shared/utils/validator';
 
 class ProfilePage extends Block {
-    constructor() {
-        super();
-        window.store.getState().user,
-            window.store.on(
-                StoreEvents.Updated,
-                this.onStoreUpdated.bind(this),
-            );
+    constructor(props) {
+        super({
+            ...props,
+            ProfileImg: new ProfileImage({}),
+        });
+        window.store.on(StoreEvents.Updated, this.onStoreUpdated.bind(this));
     }
 
     init() {
@@ -31,7 +35,7 @@ class ProfilePage extends Block {
         const onChangeOldPasswordBind = this.onChangeOldPassword.bind(this);
         const onChangeRepeatPasswordBind =
             this.onChangeRepeatPassword.bind(this);
-        const onChangeAvatarBind = this.onChangeAvatar.bind(this);
+        // const onChangeAvatarBind = this.onChangeAvatar.bind(this);
         const onFileSelectBind = this.onFileSelect.bind(this);
         const onChangesEmailBind = this.onChangesEmail.bind(this);
         const onChangesLoginBind = this.onChangesLogin.bind(this);
@@ -39,12 +43,12 @@ class ProfilePage extends Block {
         const onChangesSecondNameBind = this.onChangesSecondName.bind(this);
         const onChangesPhoneBind = this.onChangesPhone.bind(this);
         const onSaveChangesDataBind = this.onSaveChangesData.bind(this);
-
-        const ProfileImg = new ProfileImage({
-            profileImgSrc: '/not-avatar.svg',
-            profileTitle: window.store.state.user?.login,
-            onClick: onChangeAvatarBind,
-        });
+        const onLogoutBind = this.onLogout.bind(this);
+        // const ProfileImg = new ProfileImage({
+        //     profileImgSrc: '/not-avatar.svg',
+        //     profileTitle: 'asdadas',
+        //     onClick: onChangeAvatarBind,
+        // });
 
         const ProfileForm = new FormProfile({
             ActionChangeData: new ProfileAction({
@@ -61,7 +65,7 @@ class ProfilePage extends Block {
 
             ActionOut: new ProfileAction({
                 profileActionsName: 'Выйти',
-                href: '#',
+                onClick: onLogoutBind,
             }),
 
             InfoEmail: new ProfileInfoItem({
@@ -70,7 +74,7 @@ class ProfilePage extends Block {
                 name: 'email',
                 placeholder: 'Почта',
                 label: 'Почта',
-                value: this.props.user || '',
+                value: this.props.ProfileForm?.user || '',
                 readonly: 'readonly',
                 readonlyStatus: true,
                 onBlur: onChangesEmailBind,
@@ -183,11 +187,17 @@ class ProfilePage extends Block {
 
         this.children = {
             ...this.children,
-            ProfileImg,
+            // ProfileImg,
             ProfileForm,
             ProfileSidebar,
             Modal,
         };
+    }
+
+    onLogout() {
+        // const autApi = new AuthApi();
+        // autApi.logout();
+        logout();
     }
 
     onStoreUpdated(newState) {
@@ -354,6 +364,7 @@ class ProfilePage extends Block {
         const firstName = this.props.name;
         const secondName = this.props.secondName;
         const phone = this.props.phone;
+        const user = this.props.user;
 
         console.log({
             email,
@@ -361,10 +372,20 @@ class ProfilePage extends Block {
             firstName,
             secondName,
             phone,
+            user,
         });
     }
 
+    componentDidUpdate(oldProps: Props, newProps: Props): boolean {
+        if (oldProps === newProps) return false;
+        this.children.ProfileImg.setProps(newProps);
+        return true;
+    }
+
     render(): string {
+        const { user } = this.props;
+        console.log(user);
+
         return `
             <div class='profile'>
                 {{{ Modal }}}
@@ -378,5 +399,6 @@ class ProfilePage extends Block {
         `;
     }
 }
-const ProfilePageWithStore = ProfilePage;
+
+const ProfilePageWithStore = connect(({ user }) => ({ user }))(ProfilePage);
 export { ProfilePageWithStore };

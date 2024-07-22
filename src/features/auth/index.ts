@@ -23,6 +23,6 @@ export default class AuthApi {
     }
 
     async logout(): Promise<void | APIError> {
-        return authApi.get('/logout');
+        return authApi.post('/logout');
     }
 }

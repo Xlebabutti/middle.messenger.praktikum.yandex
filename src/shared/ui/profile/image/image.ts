@@ -4,7 +4,7 @@ import { Block, Props } from '../../../utils/block';
 
 class ProfileImage extends Block {
     constructor(props: Props) {
-        super(props);
+        super({ ...props });
         this.props.events = {
             click: this.props.onClick || (() => {}),
         };
@@ -14,12 +14,11 @@ class ProfileImage extends Block {
         return `
         <div class="profile__heder">
             <div class="profile__header-img">
-                <img src="{{profileImgSrc}}" alt="аватар профиля" />
+                <img src="{{user.avatar}}" alt="аватар профиля" />
                 <span class="profile__header-img-overlay">Поменять аватар</span>
             </div>
-            <h2 class="profile__header-title">{{profileTitle}}</h2>
+            <h2 class="profile__header-title">{{user.first_name}}</h2>
         </div>
-           
         `;
     }
 }

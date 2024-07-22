@@ -8,6 +8,9 @@ export class Button extends Block {
         this.props.events = {
             click: this.props.onClick || (() => {}),
         };
+        if (props.to) {
+            window.router.go(props.to);
+        }
     }
 
     render(): string {
