@@ -1,3 +1,24 @@
+const HOST = 'https://ya-praktikum.tech/api/v2';
+const WSS = 'wss://ya-praktikum.tech';
+
+enum MOUNTH {
+    'Января',
+    'Февраля',
+    'Марта',
+    'Апреля',
+    'Майя',
+    'Июня',
+    'Июля',
+    'Августа',
+    'Сентября',
+    'Октября',
+    'Ноября',
+    'Декаря',
+}
+
 export default {
-    HOST: 'https://ya-praktikum.tech/api/v2',
+    HOST,
+    WSS,
+    GET_PHOTO: `${HOST}/resources`,
+    MOUNTH,
 } as const;

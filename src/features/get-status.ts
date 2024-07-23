@@ -1,5 +1,5 @@
-import Router from '../../shared/utils/router';
-import Store from '../../shared/utils/store';
+import Router from '../shared/utils/router';
+import Store from '../shared/utils/store';
 import { APIError } from './type';
 
 export type Responce<T> = {

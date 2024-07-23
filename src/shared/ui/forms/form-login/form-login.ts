@@ -6,12 +6,15 @@ import { Validator } from '../../../utils/validator';
 import { Button } from '../../button';
 import { InputElement } from '../../input';
 import { login as Login } from '../../../../entities/user/queries';
+import Router from '../../../utils/router';
+import { RouterLink } from '../../router-link';
 
 class FormLogin extends Block {
     init(): void {
         const onLoginBind = this.onLogin.bind(this);
         const onChangeLoginBind = this.onChangeLogin.bind(this);
         const onChangePasswordBind = this.onChangePassword.bind(this);
+        const onRegistrationBind = this.onRegistration.bind(this);
 
         const InputLogin = new InputElement({
             type: 'login',
@@ -21,6 +24,7 @@ class FormLogin extends Block {
             label: 'test login',
             onBlur: onChangeLoginBind,
         });
+
         const InputPassword = new InputElement({
             type: 'password',
             name: 'password',
@@ -29,10 +33,17 @@ class FormLogin extends Block {
             label: 'test password',
             onBlur: onChangePasswordBind,
         });
+
         const ButtonLogin = new Button({
             type: 'primary',
             text: 'Авторизоваться',
             onClick: onLoginBind,
+        });
+
+        const RegistrationLink = new RouterLink({
+            label: 'Register here',
+            class: 'form__footer-link',
+            to: '/sign-up',
         });
 
         this.children = {
@@ -40,6 +51,7 @@ class FormLogin extends Block {
             InputLogin,
             InputPassword,
             ButtonLogin,
+            RegistrationLink,
         };
     }
 
@@ -91,6 +103,10 @@ class FormLogin extends Block {
         Login({ login, password });
     }
 
+    onRegistration() {
+        Router.go('');
+    }
+
     render(): string {
         return `
         <div>
@@ -108,10 +124,8 @@ class FormLogin extends Block {
                 </div>
 
                 <div class='form__footer'>
-                    <span class='form__footer-title'>{{formFooterTitle}}</span><a
-                        href='/sign-up'
-                        class='form__footer-link'
-                    >{{formFooterLink}}</a>
+                    <span class='form__footer-title'>{{formFooterTitle}}</span>
+                    {{{ RegistrationLink }}}
                 </div>
             </form>
             </div>

@@ -1,5 +1,5 @@
 import constants from '../../features/auth/constants';
-import { APIError } from '../../features/auth/type';
+import { APIError } from '../../features/type';
 
 function queryStringify(data: Record<string, unknown>) {
     if (typeof data !== 'object') {

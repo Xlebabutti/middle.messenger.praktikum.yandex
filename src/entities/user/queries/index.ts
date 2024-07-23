@@ -1,7 +1,8 @@
 import AuthApi from '../../../features/auth';
-import { checkError } from '../../../features/auth/check-error';
-import { getStatus } from '../../../features/auth/get-status';
-import { CreateUser, LoginRequestData } from '../../../features/auth/type';
+import { checkError } from '../../../features/check-error';
+import { getStatus } from '../../../features/get-status';
+
+import { CreateUser, LoginRequestData } from '../../../features/type';
 import Router from '../../../shared/utils/router';
 import Store from '../../../shared/utils/store';
 

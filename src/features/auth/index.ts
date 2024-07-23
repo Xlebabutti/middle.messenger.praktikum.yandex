@@ -1,5 +1,5 @@
 import { HTTPTransport } from '../../shared/utils/http-transport';
-import { CreateUser, LoginRequestData, SignUpResponse, UserDTO } from './type';
+import { CreateUser, LoginRequestData, SignUpResponse, UserDTO } from '../type';
 
 export default class AuthApi {
     private authApi = new HTTPTransport('/auth');

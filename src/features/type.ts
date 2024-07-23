@@ -17,6 +17,11 @@ export type UserDTO = {
     email: string;
 };
 
+export interface PasswordDTO {
+    oldPassword: string;
+    newPassword: string;
+}
+
 export type CreateUser = Omit<UserDTO, 'avatar' | 'display_name' | 'id'> & {
     password: string;
 };
