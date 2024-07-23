@@ -65,7 +65,7 @@ export class HTTPTransport {
         this.header = header;
     }
 
-    get: HTTPMethod = (url, options) => {
+    GET: HTTPMethod = (url, options) => {
         let str = url;
         if (options?.data && !(options.data instanceof FormData)) {
             str += queryStringify(options.data);
@@ -77,21 +77,21 @@ export class HTTPTransport {
         );
     };
 
-    post: HTTPMethod = (url, options) =>
+    POST: HTTPMethod = (url, options) =>
         this.request(
             url,
             { ...options, method: METHODS.POST },
             options?.timeout,
         );
 
-    put: HTTPMethod = (url, options) =>
+    PUT: HTTPMethod = (url, options) =>
         this.request(
             url,
             { ...options, method: METHODS.PUT },
             options?.timeout,
         );
 
-    delete: HTTPMethod = (url, options) =>
+    DELETE: HTTPMethod = (url, options) =>
         this.request(
             url,
             { ...options, method: METHODS.DELETE },
