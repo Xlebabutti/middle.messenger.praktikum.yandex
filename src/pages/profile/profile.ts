@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-nocheck
-
-// import { getUser } from '../../entities/user/queries';
-
 import { logout } from '../../entities/user/queries';
 import {
     Button,
@@ -13,15 +10,15 @@ import {
 } from '../../shared/ui';
 import { FormProfile } from '../../shared/ui/forms/form-profile';
 import { Sidebar } from '../../shared/ui/sidebar';
-import { Block } from '../../shared/utils/block';
+import { Block, Props } from '../../shared/utils/block';
 import connect from '../../shared/utils/connect';
 import { Validator } from '../../shared/utils/validator';
 
 class ProfilePage extends Block {
-    constructor(props) {
+    constructor(props: Props) {
         super({
             ...props,
-            ProfileImg: new ProfileImage({}),
+            ProfileImg: new ProfileImage({ props }),
         });
     }
 
@@ -47,7 +44,7 @@ class ProfilePage extends Block {
         //     profileTitle: 'asdadas',
         //     onClick: onChangeAvatarBind,
         // });
-        console.log(this.props.user);
+
         const ProfileForm = new FormProfile({
             ActionChangeData: new ProfileAction({
                 profileActionsName: 'Изменить данные',
@@ -72,7 +69,7 @@ class ProfilePage extends Block {
                 name: 'email',
                 placeholder: 'Почта',
                 label: 'Почта',
-                value: this.props.user?.data.email || '',
+                value: this.props.user?.email || '',
                 readonly: 'readonly',
                 readonlyStatus: true,
                 onBlur: onChangesEmailBind,
@@ -84,7 +81,7 @@ class ProfilePage extends Block {
                 name: 'login',
                 label: 'Логин',
                 placeholder: 'Логин',
-                value: this.props.user?.data.login || '',
+                value: this.props.user?.login || '',
                 readonly: 'readonly',
                 readonlyStatus: true,
                 onBlur: onChangesLoginBind,
@@ -96,7 +93,7 @@ class ProfilePage extends Block {
                 name: 'first_name',
                 label: 'Имя',
                 placeholder: 'Имя',
-                value: this.props.user?.data.first_name || '',
+                value: this.props.user?.first_name || '',
                 readonly: 'readonly',
                 readonlyStatus: true,
                 onBlur: onChangesNameBind,
@@ -108,7 +105,7 @@ class ProfilePage extends Block {
                 name: 'second_name',
                 label: 'Фамилия',
                 placeholder: 'Фамилия',
-                value: this.props.user?.data.second_name || '',
+                value: this.props.user?.second_name || '',
                 readonly: 'readonly',
                 readonlyStatus: true,
                 onBlur: onChangesSecondNameBind,
@@ -120,7 +117,7 @@ class ProfilePage extends Block {
                 name: 'phone',
                 label: 'Телефон',
                 placeholder: 'Телефон',
-                value: this.props.user?.data.phone || '',
+                value: this.props.user?.phone || '',
                 readonly: 'readonly',
                 readonlyStatus: true,
                 onBlur: onChangesPhoneBind,
@@ -193,8 +190,6 @@ class ProfilePage extends Block {
     }
 
     onLogout() {
-        // const autApi = new AuthApi();
-        // autApi.logout();
         logout();
     }
 
@@ -381,9 +376,6 @@ class ProfilePage extends Block {
     }
 
     render(): string {
-        const { user } = this.props;
-        console.log(user);
-
         return `
             <div class='profile'>
                 {{{ Modal }}}
@@ -393,7 +385,6 @@ class ProfilePage extends Block {
                     {{{ ProfileForm }}}
                 </div>
             </div>
-
         `;
     }
 }

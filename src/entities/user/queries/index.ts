@@ -1,5 +1,6 @@
 import AuthApi from '../../../features/auth';
 import { checkError } from '../../../features/auth/check-error';
+import { getStatus } from '../../../features/auth/get-status';
 import { CreateUser, LoginRequestData } from '../../../features/auth/type';
 import Router from '../../../shared/utils/router';
 import Store from '../../../shared/utils/store';
@@ -35,10 +36,11 @@ export const login = async (data: LoginRequestData) => {
 
 export const logout = async () => {
     try {
-        Store.set('user', null);
-        Router.go('/sign-in');
-        await authApi.logout();
-        console.log('out');
+        const response = getStatus(await authApi.logout());
+        if (!response.error) {
+            Store.set('auth', false);
+            Router.go('/');
+        }
     } catch (error) {
         console.log(error);
     }
@@ -60,10 +62,19 @@ export const registration = async (data: CreateUser) => {
 };
 
 export const getUser = async () => {
-    const user = await authApi.me();
-    if (!user) {
-        throw Error('error getUser');
+    try {
+        const response = getStatus(await authApi.me());
+        if (response.data) {
+            const user = response.data;
+            Store.set('auth', true);
+            Store.set('user', user);
+        }
+        if (response.error) {
+            Store.set('auth', false);
+            Store.set('user', null);
+        }
+    } catch (e) {
+        Store.set('auth', false);
+        Store.set('user', null);
     }
-
-    Store.set('user', user);
 };

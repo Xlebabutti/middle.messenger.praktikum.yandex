@@ -11,6 +11,10 @@ $color-danger: red;
     width: 700px;
 
     &__header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
         &-img {
             width: 100%;
             height: 8.125em;

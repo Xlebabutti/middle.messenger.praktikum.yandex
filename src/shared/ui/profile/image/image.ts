@@ -12,12 +12,12 @@ class ProfileImage extends Block {
 
     render(): string {
         return `
-        <div class="profile__heder">
+        <div class="profile__header">
             <div class="profile__header-img">
                 <img src="{{user.avatar}}" alt="аватар профиля" />
                 <span class="profile__header-img-overlay">Поменять аватар</span>
             </div>
-            <h2 class="profile__header-title">{{user.data.first_name}}</h2>
+            <h2 class="profile__header-title">{{props.user.first_name}}</h2>
         </div>
         `;
     }

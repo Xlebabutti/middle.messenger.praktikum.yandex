@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Block, Props } from '../../../utils/block';
 
 class ProfileAvatar extends Block {
-    [x: string]: any;
     constructor(props: Props) {
         super(props);
         this.props.events = {
