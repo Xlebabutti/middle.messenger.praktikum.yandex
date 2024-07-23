@@ -1,43 +1,29 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-import { AppState } from '../../features/auth/type';
-import { Block } from './block';
+import { Block, Props } from './block';
 import isEqual from './is-equal';
-import { StoreEvents } from './store';
+import store, { Indexed, StoreEvents } from './store';
 
-export function connect(
-    mapStateToProps: (state: AppState) => Partial<AppState>,
-) {
+function connect<T extends Indexed>(mapStateToProps: (state: T) => T) {
+    // eslint-disable-next-line func-names
     return function (Component: typeof Block) {
         return class extends Component {
-            private onChangeStoreCallback: () => void;
-            constructor(props: any) {
-                const store = window.store;
+            private _state: T;
 
-                let state = mapStateToProps(store.getState());
-
-                super({ ...props, ...state });
-
-                this.onChangeStoreCallback = () => {
-                    const newState = mapStateToProps(store.getState());
-
-                    if (!isEqual(state, newState)) {
-                        this.setProps({ ...newState });
-                    }
-
-                    state = newState;
-                };
-
+            constructor(args: Props) {
+                const state = mapStateToProps(store.getState() as T);
+                super({ ...args, ...state });
+                this._state = state;
                 store.on(StoreEvents.Updated, this.onChangeStoreCallback);
             }
 
-            componentWillUnmount() {
-                super.componentWillUnmount();
-                window.store.off(
-                    StoreEvents.Updated,
-                    this.onChangeStoreCallback,
-                );
-            }
+            private onChangeStoreCallback = () => {
+                const newState = mapStateToProps(store.getState() as T);
+                if (!isEqual(this._state, newState)) {
+                    this.setProps({ ...newState });
+                }
+                this._state = newState;
+            };
         };
     };
 }
+
+export default connect;
