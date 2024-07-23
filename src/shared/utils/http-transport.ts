@@ -1,88 +1,153 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import constants from '../../features/auth/constants';
+import { APIError } from '../../features/auth/type';
+
+function queryStringify(data: Record<string, unknown>) {
+    if (typeof data !== 'object') {
+        throw new Error('Data must be object');
+    }
+    const keys = Object.keys(data);
+    return keys.reduce(
+        (result, key, index) =>
+            `${result}${key}=${encodeURIComponent(data[key] as string)}${index < keys.length - 1 ? '&' : ''}`,
+        '',
+    );
+}
+
+type Indexed<T> = {
+    [key in string]: T;
+};
+
+function merge<T = unknown>(lhs: Indexed<T>, rhs: Indexed<T>): Indexed<T> {
+    Object.entries(rhs).forEach(([key, value]) => {
+        if (lhs[key] && typeof lhs[key] === 'object') {
+            merge(lhs[key] as Indexed<T>, rhs[key] as Indexed<T>);
+        } else {
+            lhs[key] = value;
+        }
+    });
+    return lhs;
+}
 
 enum METHODS {
     GET = 'GET',
     POST = 'POST',
     PUT = 'PUT',
+    PATCH = 'PATCH',
     DELETE = 'DELETE',
 }
 
+type Header = Record<string, string>;
+
 type Options = {
-    method: METHODS;
-    data?: any;
+    data?: Record<string, unknown> | FormData;
+    headers?: Header;
     timeout?: number;
+    method: METHODS;
 };
 
-type OptionsWithoutMethod = Omit<Options, 'method'>;
+export type Responce<T> = {
+    status: number;
+    data?: T;
+    error?: APIError;
+};
 
-// function queryStringify(data: object): string {
-//     let query = '?';
-//     for (const [key, value] of Object.entries(data)) {
-//         query = query.concat(key, '=', value, '&');
-//     }
-//     query = query.slice(0, -1);
-//     return query;
-// }
-
-// function setHeaders(xhr: XMLHttpRequest, headers: object) {
-//     for (const [header, value] of Object.entries(headers)) {
-//         xhr.setRequestHeader(header, value);
-//     }
-// }
+type HTTPMethod = <T = unknown>(
+    url: string,
+    options?: Omit<Options, 'method'>,
+) => Promise<Responce<T>>;
 
 export class HTTPTransport {
-    private apiUrl: string = '';
-    constructor(apiPath: string) {
-        this.apiUrl = `${constants.HOST}${apiPath}`;
+    private url: string;
+    private header: Header;
+
+    constructor(url: string, header: Header = {}) {
+        this.url = constants.HOST + url;
+        this.header = header;
     }
 
-    get<TResponse>(
-        url: string,
-        options: OptionsWithoutMethod = {},
-    ): Promise<TResponse> {
-        return this.request<TResponse>(`${this.apiUrl}${url}`, {
-            ...options,
-            method: METHODS.GET,
-        });
-    }
-
-    post<TResponse>(
-        url: string,
-        options: OptionsWithoutMethod = {},
-    ): Promise<TResponse> {
-        return this.request<TResponse>(`${this.apiUrl}${url}`, {
-            ...options,
-            method: METHODS.POST,
-        });
-    }
-
-    async request<TResponse>(
-        url: string,
-        options: Options = { method: METHODS.GET },
-    ): Promise<TResponse> {
-        const { method, data } = options;
-
-        const response = await fetch(url, {
-            method,
-            credentials: 'include',
-            mode: 'cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: data ? JSON.stringify(data) : null,
-        });
-
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(
-                `HTTP error! status: ${response.status}, message: ${errorText}`,
-            );
+    get: HTTPMethod = (url, options) => {
+        let str = url;
+        if (options?.data && !(options.data instanceof FormData)) {
+            str += queryStringify(options.data);
         }
+        return this.request(
+            str,
+            { ...options, method: METHODS.GET },
+            options?.timeout,
+        );
+    };
 
-        const isJson = response.headers
-            .get('content-type')
-            ?.includes('application/json');
-        const resultData = (await isJson) ? response.json() : null;
+    post: HTTPMethod = (url, options) =>
+        this.request(
+            url,
+            { ...options, method: METHODS.POST },
+            options?.timeout,
+        );
 
-        return resultData as unknown as TResponse;
-    }
+    put: HTTPMethod = (url, options) =>
+        this.request(
+            url,
+            { ...options, method: METHODS.PUT },
+            options?.timeout,
+        );
+
+    delete: HTTPMethod = (url, options) =>
+        this.request(
+            url,
+            { ...options, method: METHODS.DELETE },
+            options?.timeout,
+        );
+
+    request = <T>(
+        url: string,
+        options: Options,
+        timeout = 5000,
+    ): Promise<Responce<T>> => {
+        const { method, data, headers = {} } = options;
+
+        return new Promise<Responce<T>>((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+
+            if (!(data instanceof FormData)) {
+                headers['Content-Type'] = 'application/json';
+            } else {
+                headers['Content-Type'] = '';
+            }
+
+            xhr.open(method, this.url + url);
+            xhr.withCredentials = true;
+
+            const headersMerge = merge(this.header, headers ?? {});
+            Object.entries(headersMerge).forEach(([key, value]) => {
+                if (value) xhr.setRequestHeader(key, value);
+            });
+
+            xhr.onload = () => {
+                const isJson = xhr
+                    .getResponseHeader('Content-Type')
+                    ?.includes('application/json');
+                const body = isJson ? JSON.parse(xhr.response) : xhr.response;
+                const response: Responce<T> = { status: xhr.status };
+                if (xhr.status < 400) {
+                    response.data = body;
+                } else {
+                    response.error = body;
+                }
+                resolve(response);
+            };
+
+            xhr.onabort = () => reject(new Error('Request was aborted'));
+            xhr.onerror = () => reject(new Error('Request failed'));
+            xhr.timeout = timeout;
+            xhr.ontimeout = () => reject(new Error('Request timed out'));
+
+            if (method === 'GET' || !data) {
+                xhr.send();
+            } else if (!(data instanceof FormData)) {
+                xhr.send(JSON.stringify(data));
+            } else {
+                xhr.send(data);
+            }
+        });
+    };
 }
