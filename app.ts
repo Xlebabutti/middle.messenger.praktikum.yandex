@@ -6,13 +6,6 @@ import { initRouter } from './src/shared/utils/init-router';
 async function app() {
     // initStore();
     initRouter();
-
-    document.addEventListener('DOMContentLoaded', async () => {
-        const root = document.querySelector('#app');
-        if (root !== null) {
-            return 'loading';
-        }
-    });
 }
 
 export default app;

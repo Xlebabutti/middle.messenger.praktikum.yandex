@@ -1,4 +1,5 @@
 import { Block } from './block';
+import { MiddlewareManager } from './middleware';
 import Route from './route';
 
 class Router {
@@ -10,8 +11,17 @@ class Router {
 
     private _rootQuery: string = '';
 
+    private _middleware: MiddlewareManager<{
+        redirect: (pathname: string) => void;
+        pathname: string;
+    }> = new MiddlewareManager();
+
     constructor(rootQuery: string) {
         this._rootQuery = rootQuery;
+    }
+
+    get middleware() {
+        return this._middleware;
     }
 
     use(pathname: string, block: typeof Block) {
@@ -33,7 +43,7 @@ class Router {
         this.onRoute(window.location.pathname);
     }
 
-    onRoute(pathname: string) {
+    private async onRoute(pathname: string) {
         const route = this.getRoute(pathname);
 
         if (!route) {
@@ -44,9 +54,14 @@ class Router {
             this._currentRoute.leave();
         }
 
-        this._currentRoute = route;
-        if (route !== null) {
-            route.render(); // need fix
+        const access = await this.middleware.execute({
+            redirect: this.go.bind(this),
+            pathname,
+        });
+
+        if (access) {
+            this._currentRoute = route;
+            route.render();
         }
     }
 

@@ -14,8 +14,7 @@ import {
 import { FormProfile } from '../../shared/ui/forms/form-profile';
 import { Sidebar } from '../../shared/ui/sidebar';
 import { Block } from '../../shared/utils/block';
-import { connect } from '../../shared/utils/connect';
-import { StoreEvents } from '../../shared/utils/store';
+import connect from '../../shared/utils/connect';
 import { Validator } from '../../shared/utils/validator';
 
 class ProfilePage extends Block {
@@ -24,7 +23,6 @@ class ProfilePage extends Block {
             ...props,
             ProfileImg: new ProfileImage({}),
         });
-        window.store.on(StoreEvents.Updated, this.onStoreUpdated.bind(this));
     }
 
     init() {
@@ -49,7 +47,7 @@ class ProfilePage extends Block {
         //     profileTitle: 'asdadas',
         //     onClick: onChangeAvatarBind,
         // });
-
+        console.log(this.props.user);
         const ProfileForm = new FormProfile({
             ActionChangeData: new ProfileAction({
                 profileActionsName: 'Изменить данные',
@@ -74,7 +72,7 @@ class ProfilePage extends Block {
                 name: 'email',
                 placeholder: 'Почта',
                 label: 'Почта',
-                value: this.props.ProfileForm?.user || '',
+                value: this.props.user?.data.email || '',
                 readonly: 'readonly',
                 readonlyStatus: true,
                 onBlur: onChangesEmailBind,
@@ -86,7 +84,7 @@ class ProfilePage extends Block {
                 name: 'login',
                 label: 'Логин',
                 placeholder: 'Логин',
-                value: 'ivanivanov',
+                value: this.props.user?.data.login || '',
                 readonly: 'readonly',
                 readonlyStatus: true,
                 onBlur: onChangesLoginBind,
@@ -98,7 +96,7 @@ class ProfilePage extends Block {
                 name: 'first_name',
                 label: 'Имя',
                 placeholder: 'Имя',
-                value: 'Иван',
+                value: this.props.user?.data.first_name || '',
                 readonly: 'readonly',
                 readonlyStatus: true,
                 onBlur: onChangesNameBind,
@@ -110,7 +108,7 @@ class ProfilePage extends Block {
                 name: 'second_name',
                 label: 'Фамилия',
                 placeholder: 'Фамилия',
-                value: 'Иванов',
+                value: this.props.user?.data.second_name || '',
                 readonly: 'readonly',
                 readonlyStatus: true,
                 onBlur: onChangesSecondNameBind,
@@ -122,7 +120,7 @@ class ProfilePage extends Block {
                 name: 'phone',
                 label: 'Телефон',
                 placeholder: 'Телефон',
-                value: '+7 (909) 967 30 30',
+                value: this.props.user?.data.phone || '',
                 readonly: 'readonly',
                 readonlyStatus: true,
                 onBlur: onChangesPhoneBind,

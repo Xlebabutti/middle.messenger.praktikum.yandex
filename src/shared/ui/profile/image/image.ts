@@ -17,7 +17,7 @@ class ProfileImage extends Block {
                 <img src="{{user.avatar}}" alt="аватар профиля" />
                 <span class="profile__header-img-overlay">Поменять аватар</span>
             </div>
-            <h2 class="profile__header-title">{{user.first_name}}</h2>
+            <h2 class="profile__header-title">{{user.data.first_name}}</h2>
         </div>
         `;
     }

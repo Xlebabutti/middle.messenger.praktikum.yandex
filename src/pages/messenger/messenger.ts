@@ -3,6 +3,7 @@
 import { Button, Message, MessageActive } from '../../shared/ui';
 import { MessageList } from '../../shared/ui/message/message-list';
 import { Block, Props } from '../../shared/utils/block';
+import Router from '../../shared/utils/router';
 
 interface ChatMessage {
     map(
@@ -88,7 +89,7 @@ class Messenger extends Block {
     }
 
     onProfileClick() {
-        window.router.go('/settings');
+        Router.go('/settings');
     }
 
     mapMessageToComponent(
@@ -128,7 +129,8 @@ class Messenger extends Block {
                 <div class="messenger__left">
                     <div class="messenger__left-header">
                         <div class="messenger__left-profile">
-                            <a class="messenger__left-profile-link" href="/settings">Профиль</a>
+                            <a class="messenger__left-profile-link">Профиль</a>
+                            {{{ButtonProfile}}}
                         </div
                         <div class="messenger__left-search">
                             <div class="messenger__left-search-icon">
