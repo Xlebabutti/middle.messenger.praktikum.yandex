@@ -2,8 +2,6 @@ import { Block } from './block';
 import Route from './route';
 
 class Router {
-    static __instance?: Router;
-
     private routes: Record<string, Route> = {};
 
     private history: History = window.history;
@@ -13,10 +11,6 @@ class Router {
     private _rootQuery: string = '';
 
     constructor(rootQuery: string) {
-        if (Router.__instance) {
-            return Router.__instance;
-        }
-
         this._rootQuery = rootQuery;
     }
 
@@ -32,14 +26,14 @@ class Router {
         window.onpopstate = (event) => {
             const window = event.currentTarget as Window;
             if (window) {
-                this._onRoute(window.location.pathname);
+                this.onRoute(window.location.pathname);
             }
         };
 
-        this._onRoute(window.location.pathname);
+        this.onRoute(window.location.pathname);
     }
 
-    _onRoute(pathname: string) {
+    onRoute(pathname: string) {
         const route = this.getRoute(pathname);
 
         if (!route) {
@@ -58,7 +52,7 @@ class Router {
 
     go(pathname: string) {
         this.history.pushState({}, '', pathname);
-        this._onRoute(pathname);
+        this.onRoute(pathname);
     }
 
     back() {
@@ -74,4 +68,4 @@ class Router {
     }
 }
 
-export default Router;
+export default new Router('#app');

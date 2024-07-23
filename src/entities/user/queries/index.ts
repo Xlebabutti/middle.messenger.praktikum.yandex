@@ -1,11 +1,13 @@
 import AuthApi from '../../../features/auth';
 import { checkError } from '../../../features/auth/check-error';
 import { CreateUser, LoginRequestData } from '../../../features/auth/type';
+import Router from '../../../shared/utils/router';
+import { Store } from '../../../shared/utils/store';
 
 const authApi = new AuthApi();
 
 export const login = async (data: LoginRequestData) => {
-    window.store.set({ isLoading: true });
+    Store.set({ isLoading: true });
     try {
         const response = await authApi.login(data);
         const errorApi = checkError(response);
@@ -14,26 +16,27 @@ export const login = async (data: LoginRequestData) => {
 
         const me = await authApi.me();
 
-        window.store.set({ user: me });
-        window.store.set({ auth: true });
-        window.store.set({ loginError: '' });
-        window.router.go('/messenger');
+        Store.set({ user: me });
+        Store.set({ auth: true });
+        Store.set({ loginError: '' });
+        Router.go('/messenger');
     } catch (error) {
         const me = await authApi.me();
         if (!me.reason) {
-            window.store.set({ user: me });
-            window.router.go('/messenger');
+            Store.set({ user: me });
+            Router.go('/messenger');
         }
-        window.store.set({ loginError: 'some error' });
+        Store.set({ loginError: 'some error' });
+        Store.set({ user: null });
     } finally {
-        window.store.set({ isLoading: false });
+        Store.set({ isLoading: false });
     }
 };
 
 export const logout = async () => {
     try {
-        window.store.set({ user: null });
-        window.router.go('/sign-in');
+        Store.set({ user: null });
+        Router.go('/sign-in');
         await authApi.logout();
         console.log('out');
     } catch (error) {
@@ -48,9 +51,9 @@ export const registration = async (data: CreateUser) => {
 
         if (errorApi) throw Error(response.reason);
 
-        window.router.go('/sign-in');
+        Router.go('/sign-in');
         const user = await authApi.me();
-        window.store.set({ user: user });
+        Store.set({ user: user });
     } catch (error) {
         console.error(error);
     }
@@ -62,5 +65,5 @@ export const getUser = async () => {
         throw Error('error getUser');
     }
 
-    window.store.set({ user: user });
+    Store.set({ user: user });
 };

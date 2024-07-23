@@ -1,30 +1,25 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import EventBus from './event-bus';
+import set from './set';
 
 export enum StoreEvents {
     Updated = 'Updated',
 }
 
-export class Store<State extends Record<string, any>> extends EventBus {
-    private state: State = {} as State;
-    static set: any;
-    static getState: any;
+export type Indexed<T = unknown> = {
+    [key in string]: T;
+};
 
-    constructor(defaultState: State) {
-        super();
-        this.state = defaultState;
-        this.set(defaultState);
-    }
+class Store extends EventBus {
+    private state: Indexed = {};
 
     public getState() {
         return this.state;
     }
 
-    public set(nextState: Partial<State>) {
-        const prevState = { ...this.state };
-
-        this.state = { ...this.state, ...nextState };
-
-        this.emit(StoreEvents.Updated, prevState, nextState);
+    public set(path: string, value: unknown) {
+        set(this.state, path, value);
+        this.emit(StoreEvents.Updated);
     }
 }
+
+export default new Store();
