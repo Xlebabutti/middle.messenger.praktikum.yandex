@@ -3,7 +3,6 @@ import isEqual from './is-equal';
 import store, { Indexed, StoreEvents } from './store';
 
 function connect<T extends Indexed>(mapStateToProps: (state: T) => T) {
-    // eslint-disable-next-line func-names
     return function (Component: typeof Block) {
         return class extends Component {
             private _state: T;

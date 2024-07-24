@@ -2,6 +2,10 @@
 //@ts-nocheck
 import { logout } from '../../entities/user/queries';
 import {
+    updatePassword,
+    updateUser,
+} from '../../entities/user/repositories/user';
+import {
     Button,
     ModalWindow,
     ProfileAction,
@@ -30,7 +34,6 @@ class ProfilePage extends Block {
         const onChangeOldPasswordBind = this.onChangeOldPassword.bind(this);
         const onChangeRepeatPasswordBind =
             this.onChangeRepeatPassword.bind(this);
-        // const onChangeAvatarBind = this.onChangeAvatar.bind(this);
         const onFileSelectBind = this.onFileSelect.bind(this);
         const onChangesEmailBind = this.onChangesEmail.bind(this);
         const onChangesLoginBind = this.onChangesLogin.bind(this);
@@ -39,11 +42,6 @@ class ProfilePage extends Block {
         const onChangesPhoneBind = this.onChangesPhone.bind(this);
         const onSaveChangesDataBind = this.onSaveChangesData.bind(this);
         const onLogoutBind = this.onLogout.bind(this);
-        // const ProfileImg = new ProfileImage({
-        //     profileImgSrc: '/not-avatar.svg',
-        //     profileTitle: 'asdadas',
-        //     onClick: onChangeAvatarBind,
-        // });
 
         const ProfileForm = new FormProfile({
             ActionChangeData: new ProfileAction({
@@ -317,6 +315,9 @@ class ProfilePage extends Block {
             errorText: validatorResult.errorText,
             name: 'password',
         });
+
+        this.setProps({ inputValue: inputValue });
+        this.setProps({ newPassword: newPassword });
         this.setProps({ save: validatorResult.save });
     }
 
@@ -325,12 +326,15 @@ class ProfilePage extends Block {
         const save = this.props.save;
 
         if (save) {
-            alert('done save');
+            const oldPassword = this.props.oldPassword;
+            const newPassword = this.props.newPassword;
+
+            updatePassword({ oldPassword, newPassword });
+
             this.children.ProfileForm.setProps({ changePassword: true });
+
             return;
         }
-
-        alert('error');
     }
 
     onChangeAvatar() {
@@ -354,18 +358,16 @@ class ProfilePage extends Block {
         e.preventDefault();
         const email = this.props.email;
         const login = this.props.login;
-        const firstName = this.props.name;
-        const secondName = this.props.secondName;
+        const first_name = this.props.name;
+        const second_name = this.props.secondName;
         const phone = this.props.phone;
-        const user = this.props.user;
 
-        console.log({
+        updateUser({
             email,
             login,
-            firstName,
-            secondName,
+            first_name,
+            second_name,
             phone,
-            user,
         });
     }
 
@@ -383,11 +385,20 @@ class ProfilePage extends Block {
                 {{{ ProfileImg }}}
                 <div class='profile__body'>
                     {{{ ProfileForm }}}
+                    {{#if errorUpdateProfile}}
+                        <p class="error">{{errorUpdateProfile}}</p>
+                    {{/if}}
                 </div>
             </div>
         `;
     }
 }
 
-const ProfilePageWithStore = connect(({ user }) => ({ user }))(ProfilePage);
+const ProfilePageWithStore = connect(
+    ({ user, errorUpdateProfile, canSave }) => ({
+        user,
+        errorUpdateProfile,
+        canSave,
+    }),
+)(ProfilePage);
 export { ProfilePageWithStore };

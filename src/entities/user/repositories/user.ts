@@ -21,12 +21,12 @@ export const updateUser = async (data: UserDTO) => {
         }
         if (response.error) {
             Store.set(
-                'error-update',
+                'errorUpdateProfile',
                 `Не удалось обновить профиль: ${response.error.reason}`,
             );
         }
     } catch (error) {
-        Store.set('error-update', 'Не удалось обновить профиль');
+        Store.set('errorUpdateProfile', 'Не удалось обновить профиль');
     }
 };
 
@@ -38,9 +38,12 @@ export const updatePassword = async (data: PasswordDTO) => {
                 'errorUpdateProfile',
                 `Не удалось обновить пароль: ${response.error.reason}`,
             );
+            Store.set('canSave', false);
         }
-    } catch (e) {
+        if (response.status === 200) Store.set('canSave', true);
+    } catch (error) {
         Store.set('errorUpdateProfile', 'Не удалось обновить пароль');
+        Store.set('canSave', false);
     }
 };
 
