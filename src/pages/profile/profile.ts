@@ -16,6 +16,7 @@ import { FormProfile } from '../../shared/ui/forms/form-profile';
 import { Sidebar } from '../../shared/ui/sidebar';
 import { Block, Props } from '../../shared/utils/block';
 import connect from '../../shared/utils/connect';
+import Router from '../../shared/utils/router';
 import { Validator } from '../../shared/utils/validator';
 
 class ProfilePage extends Block {
@@ -49,6 +50,7 @@ class ProfilePage extends Block {
         const onSaveChangesDataBind = this.onSaveChangesData.bind(this);
         const onLogoutBind = this.onLogout.bind(this);
         const onChangeAvatarBind = this.onChangeAvatar.bind(this);
+        const onSidebarClickBind = this.onSidebarClickBind.bind(this);
 
         const ProfileImg = new ProfileImage({
             profileImgSrc: this.props.user?.avatar || '/not-avatar.svg',
@@ -178,6 +180,7 @@ class ProfilePage extends Block {
 
         const ProfileSidebar = new Sidebar({
             sidebarImg: '/arrow.svg',
+            onClick: onSidebarClickBind,
         });
 
         const Modal = new ModalWindow({
@@ -202,6 +205,10 @@ class ProfilePage extends Block {
 
     onLogout() {
         logout();
+    }
+
+    onSidebarClickBind() {
+        Router.back();
     }
 
     onStoreUpdated(newState) {

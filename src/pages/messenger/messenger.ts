@@ -125,6 +125,7 @@ class Messenger extends Block {
 
     render(): string {
         return `
+        <div class="messenger-container">
             <div class="messenger">
                 <div class="messenger__left">
                     <div class="messenger__left-header">
@@ -155,24 +156,24 @@ class Messenger extends Block {
                                 placeholder="Поиск"
                             />
                         </div>
-                    </div>
-                    <div class="messenger__left-body">
 
-                        <ul class="messenger__left-list">
-                            {{{ ListMessage }}}
-                        </ul>
-
+                        <div class="messenger__left-body">
+                            <ul class="messenger__left-list">
+                                {{{ ListMessage }}}
+                            </ul>
+                        </div>
                     </div>
+
+                    {{#if chooseChat}}
+                        {{{ ActiveMessage }}}
+                    {{else}}
+                        <div class="messenger__right-choose">
+                            <p>Выберите чат, чтобы отправить сообщение</p>
+                        </div>
+                    {{/if}}
                 </div>
-
-                {{#if chooseChat}}
-                    {{{ ActiveMessage }}}
-                {{else}}
-                    <div class="messenger__right-choose">
-                        <p>Выберите чат, чтобы отправить сообщение</p>
-                    </div>
-                {{/if}}
             </div>
+        </div>
         `;
     }
 }
