@@ -22,7 +22,13 @@ class ProfilePage extends Block {
     constructor(props: Props) {
         super({
             ...props,
-            ProfileImg: new ProfileImage({ props }),
+            // ProfileImg: new ProfileImage({
+            //     props,
+            //     onClick() {
+            //         // this.props.setProps({ modalOpen: true });
+            //         console.log('asdsa');
+            //     },
+            // }),
         });
     }
 
@@ -42,17 +48,23 @@ class ProfilePage extends Block {
         const onChangesPhoneBind = this.onChangesPhone.bind(this);
         const onSaveChangesDataBind = this.onSaveChangesData.bind(this);
         const onLogoutBind = this.onLogout.bind(this);
+        const onChangeAvatarBind = this.onChangeAvatar.bind(this);
+
+        const ProfileImg = new ProfileImage({
+            profileImgSrc: this.props.user?.avatar || '/not-avatar.svg',
+            profileTitle: this.props.user?.first_name || '',
+            onClick: onChangeAvatarBind,
+        });
 
         const ProfileForm = new FormProfile({
             ActionChangeData: new ProfileAction({
                 profileActionsName: 'Изменить данные',
-                href: '#',
                 onClick: onChangeDataBind,
             }),
 
             ActionChangePassword: new ProfileAction({
                 profileActionsName: 'Изменить пароль',
-                href: '#',
+
                 onClick: onChangePasswordBind,
             }),
 
@@ -175,12 +187,13 @@ class ProfilePage extends Block {
             text: 'Поменять',
             name: 'avatar',
             modalOpen: false,
+            modalFile: '',
             onChange: onFileSelectBind,
         });
 
         this.children = {
             ...this.children,
-            // ProfileImg,
+            ProfileImg,
             ProfileForm,
             ProfileSidebar,
             Modal,
@@ -349,7 +362,7 @@ class ProfilePage extends Block {
             console.log(file);
             this.children.Modal.setProps({
                 chooseFile: true,
-                modalFile: file.name,
+                modalFile: file,
             });
         }
     }
