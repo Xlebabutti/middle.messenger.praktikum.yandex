@@ -1,2 +1,2 @@
 import './_messenger.scss';
-export { Messenger } from './messenger';
+export { MessengerPageWithStore as Messenger } from './messenger';

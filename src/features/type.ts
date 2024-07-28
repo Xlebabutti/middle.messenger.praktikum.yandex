@@ -49,6 +49,16 @@ export type ChatDTO = {
     last_message: LastMessage | null;
 };
 
+export type DeleteChatDTO = {
+    userId: number;
+    result: Omit<ChatDTO, 'unread_count' | 'time' | 'content' | 'last_message'>;
+};
+
+export type UpdateUserChatDTO = {
+    users: number[];
+    chatId: number;
+};
+
 export type AppState = {
     user: null | UserDTO;
     isLoading: boolean;

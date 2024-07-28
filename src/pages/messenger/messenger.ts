@@ -1,9 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-nocheck
+
+import { getChats } from '../../entities/chat/repositories/chat';
 import { Button, Message, MessageActive } from '../../shared/ui';
 import { MessageList } from '../../shared/ui/message/message-list';
 import { Block, Props } from '../../shared/utils/block';
+import connect from '../../shared/utils/connect';
 import Router from '../../shared/utils/router';
+import Store from '../../shared/utils/store';
 
 interface ChatMessage {
     map(
@@ -32,44 +36,28 @@ class Messenger extends Block {
     constructor(props: Props) {
         super({
             ...props,
-            listChat: [
-                {
-                    id: '1',
-                    name: 'Ваня',
-                    message: 'Приветы',
-                    time: '09:00',
-                    count: '1',
-                },
-                {
-                    id: '2',
-                    name: 'Жора',
-                    message: 'Как дела там???',
-                    time: '14:30',
-                    count: '3',
-                },
-                {
-                    id: '3',
-                    name: 'Анна',
-                    message: 'Привет! Чем занимаешься?',
-                    time: '12:35',
-                    count: '6',
-                },
-            ],
+            listChat: [],
+            filterListChat: [],
+        });
+
+        this.init();
+        this.fetchChats();
+    }
+
+    async fetchChats(): Promise<void> {
+        await getChats();
+        this.updateProps();
+    }
+
+    updateProps(): void {
+        const state = Store.getState();
+        this.setProps({
+            listChat: state.listChat || [],
         });
     }
 
     init(): void {
-        const onMessageClickBind = this.onMessageClick.bind(this);
         const onProfileClickBind = this.onProfileClick.bind(this);
-
-        const ListMessage = new MessageList({
-            messages:
-                this.mapMessageToComponent(
-                    this.props.listChat,
-                    null,
-                    onMessageClickBind,
-                ) || [],
-        });
 
         const ActiveMessage = new MessageActive({});
 
@@ -78,14 +66,12 @@ class Messenger extends Block {
         });
 
         this.children = {
-            ListMessage,
             ActiveMessage,
             ButtonProfile,
+            ListMessage: new MessageList({
+                messages: this.mapMessageToComponent(this.props.listChat) || [],
+            }),
         };
-    }
-
-    onMessageClick(): void {
-        this.setProps({ chooseChat: true });
     }
 
     onProfileClick() {
@@ -94,8 +80,8 @@ class Messenger extends Block {
 
     mapMessageToComponent(
         messageCard: ChatMessage,
-        activeId: string | null,
-        hundler: () => void,
+        activeId: string | null = null,
+        handler: (id: string) => void = () => {},
     ) {
         return messageCard?.map(
             ({
@@ -118,9 +104,17 @@ class Messenger extends Block {
                     time,
                     count,
                     activeId,
-                    click: hundler,
+                    click: () => handler(id),
                 }),
         );
+    }
+
+    componentDidUpdate(oldProps: Props, newProps: Props): boolean {
+        if (oldProps.listChat === newProps.listChat) return false;
+        this.children.ListMessage.setProps({
+            messages: this.mapMessageToComponent(newProps.listChat),
+        });
+        return true;
     }
 
     render(): string {
@@ -132,7 +126,7 @@ class Messenger extends Block {
                         <div class="messenger__left-profile">
                             <a class="messenger__left-profile-link">Профиль</a>
                             {{{ButtonProfile}}}
-                        </div
+                        </div>
                         <div class="messenger__left-search">
                             <div class="messenger__left-search-icon">
                                 <svg
@@ -178,4 +172,26 @@ class Messenger extends Block {
     }
 }
 
-export { Messenger };
+const MessengerPageWithStore = connect<{
+    listChat: Array<ChatDTO>;
+    activeChatId: number | null;
+    activeChat: ChatDTO;
+    listMessage: ListMessage;
+    errorMessage: string;
+}>(
+    ({
+        listChat,
+        activeChatId = null,
+        activeChat,
+        listMessage,
+        errorMessage,
+    }) => ({
+        listChat,
+        activeChatId,
+        activeChat,
+        listMessage,
+        errorMessage,
+    }),
+)(Messenger);
+
+export { MessengerPageWithStore };

@@ -1,6 +1,6 @@
 import { Block, Props } from './block';
 import isEqual from './is-equal';
-import store, { Indexed, StoreEvents } from './store';
+import Store, { Indexed, StoreEvents } from './store';
 
 function connect<T extends Indexed>(mapStateToProps: (state: T) => T) {
     return function (Component: typeof Block) {
@@ -8,14 +8,14 @@ function connect<T extends Indexed>(mapStateToProps: (state: T) => T) {
             private _state: T;
 
             constructor(args: Props) {
-                const state = mapStateToProps(store.getState() as T);
+                const state = mapStateToProps(Store.getState() as T);
                 super({ ...args, ...state });
                 this._state = state;
-                store.on(StoreEvents.Updated, this.onChangeStoreCallback);
+                Store.on(StoreEvents.Updated, this.onChangeStoreCallback);
             }
 
             private onChangeStoreCallback = () => {
-                const newState = mapStateToProps(store.getState() as T);
+                const newState = mapStateToProps(Store.getState() as T);
                 if (!isEqual(this._state, newState)) {
                     this.setProps({ ...newState });
                 }
